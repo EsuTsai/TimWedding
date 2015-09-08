@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>2367E610-4FFB-4703-AFE0-C30C66C1F275</string>
+	<key>IDESourceControlProjectName</key>
+	<string>TimWedding</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>38C2371C956AA53C5C7153ACD4E32C312E521238</key>
+		<string>https://github.com/EsuTsai/TimWedding.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>TimWedding.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>38C2371C956AA53C5C7153ACD4E32C312E521238</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/EsuTsai/TimWedding.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>38C2371C956AA53C5C7153ACD4E32C312E521238</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>38C2371C956AA53C5C7153ACD4E32C312E521238</string>
+			<key>IDESourceControlWCCName</key>
+			<string>TimWedding</string>
+		</dict>
+	</array>
+</dict>
+</plist>

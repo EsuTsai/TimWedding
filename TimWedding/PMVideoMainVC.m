@@ -13,6 +13,10 @@
 #import <pop/POP.h>
 
 @interface PMVideoMainVC ()
+{
+    UIScrollView *backgroundView;
+}
+
 @property (strong, nonatomic) MPMoviePlayerController *player;
 @end
 
@@ -33,18 +37,24 @@
     self.player.view.frame = CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height);
     self.player.view.center = CGPointMake([[UIScreen mainScreen] bounds].size.width/2, [[UIScreen mainScreen] bounds].size.height/2);
     [self.view addSubview:self.player.view];
-    [self.player prepareToPlay];
+//    [self.player prepareToPlay];
     [self.player play];
     
     
-    UIView *blurView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_BOUNDS.size.width, SCREEN_BOUNDS.size.height)];
-//    blurView.backgroundColor = [UIColor blackColor];
-//    blurView.alpha = 0.7;
+    UIView *layerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_BOUNDS.size.width, SCREEN_BOUNDS.size.height)];
+        layerView.backgroundColor = [UIColor colorWithWhite:0.153 alpha:1.000];
+        layerView.alpha = 0.6;
     
-    blurView.backgroundColor = [UIColor whiteColor];
-    blurView.alpha = 0.5;
+//        layerView.backgroundColor = [UIColor whiteColor];
+//        layerView.alpha = 0.3;
     
-    [self.view addSubview:blurView];
+    [self.view addSubview:layerView];
+    
+    backgroundView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_BOUNDS.size.width, SCREEN_BOUNDS.size.height)];
+    backgroundView.scrollEnabled = YES;
+    backgroundView.contentSize=CGSizeMake(SCREEN_BOUNDS.size.width, 1300);
+    
+    [self.view addSubview:backgroundView];
     //    UIVisualEffect *blurEffect;
     //    blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
     //
@@ -59,7 +69,7 @@
     titleLabel.textAlignment = NSTextAlignmentCenter;
     titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:40.];
     titleLabel.textColor = [UIColor whiteColor];
-    [self.view addSubview:titleLabel];
+    [backgroundView addSubview:titleLabel];
     
     [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(startTimeline) userInfo:nil repeats:NO];
     
@@ -79,38 +89,47 @@
 - (void)timelineView:(UIView *)lastView count:(int)count
 {
     __block int i = 0;
-    UIView *circleView1;
+    UIImageView *circleView1;
     
     if(lastView == nil){
         
-        circleView1 = [self circleView:CGRectMake(40,120,20,20) upperView:nil];
+        circleView1 = [self circleView:CGRectMake(40,120,60,60) upperView:nil imageCount:i];
     }else{
         i = count;
-        circleView1 = [self circleView:CGRectMake(0,0,20,20) upperView:lastView];
+        circleView1 = [self circleView:CGRectMake(0,0,60,60) upperView:lastView imageCount:i];
     }
     
-    if(i > 4){
+    if(i > 8){
         return ;
     }
     
-    [self.view addSubview:circleView1];
+    [backgroundView addSubview:circleView1];
     UIView *squareView1 = [self squareWithUpperView:circleView1];
-    [self.view addSubview:squareView1];
+    [backgroundView addSubview:squareView1];
+    
+    UIView *infoView = [self infoWithLeftView:circleView1 infoCount:i];
+    infoView.alpha = 0.0;
+    [backgroundView addSubview:infoView];
     
     circleView1.transform = CGAffineTransformMakeScale(0.1,0.1);
+    [UIView animateWithDuration:0.2f animations:^{
+        infoView.alpha = 1.0;
+    }];
+    
+    
     POPSpringAnimation *scaleAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerScaleXY];
     scaleAnimation.toValue = [NSValue valueWithCGSize:CGSizeMake(1.0, 1.0)];
     scaleAnimation.springBounciness = 15.f;
     [circleView1.layer pop_addAnimation:scaleAnimation forKey:@"scaleAnim"];
     scaleAnimation.completionBlock = ^(POPAnimation *anim, BOOL finished) {
-        [UIView animateWithDuration:0.3f animations:^{
-
-            if(i < 4){
-                squareView1.frame = CGRectMake(circleView1.center.x-2.5, circleView1.frame.origin.y + circleView1.frame.size.height, 5, 50);
+        [UIView animateWithDuration:0.5f animations:^{
+            if(i < 8){
+                squareView1.frame = CGRectMake(circleView1.center.x-2.5, circleView1.frame.origin.y + circleView1.frame.size.height, 1, 50);
             }
             
         } completion:^(BOOL finished) {
             i = i+1;
+            
             [self timelineView:squareView1 count:i];
             
         }];
@@ -119,31 +138,62 @@
 
 }
 
-- (UIView *)circleView:(CGRect)frame upperView:(UIView *)upperView
+- (UIImageView *)circleView:(CGRect)frame upperView:(UIView *)upperView imageCount:(int)count
 {
-    UIView *circleView;
+    UIImageView *circleView;
     if(upperView == nil){
-        circleView = [[UIView alloc] initWithFrame:CGRectMake(frame.origin.x
+        circleView = [[UIImageView alloc] initWithFrame:CGRectMake(frame.origin.x
                                                                       ,frame.origin.y,frame.size.width,frame.size.height)];
     }else{
-        circleView = [[UIView alloc] initWithFrame:CGRectMake(upperView.center.x - frame.size.width/2
+        circleView = [[UIImageView alloc] initWithFrame:CGRectMake(upperView.center.x - frame.size.width/2
                                                               ,upperView.frame.origin.y + upperView.frame.size.height,frame.size.width,frame.size.height)];
     }
     
-    circleView.alpha = 0.5;
-    circleView.layer.cornerRadius = 10;
+    [circleView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%d.jpg",count]]];
+    circleView.contentMode = UIViewContentModeScaleAspectFill;
+    circleView.clipsToBounds = YES;
+//    circleView.alpha = 0.5;
+    circleView.layer.cornerRadius = 30;
     circleView.backgroundColor = [UIColor colorWithRed:0.945 green:0.510 blue:0.000 alpha:1.000];
     
     return circleView;
 }
 
-- (UIView *)squareWithUpperView:(UIView *)upperView
+- (UIView *)squareWithUpperView:(UIImageView *)upperView
 {
-    UIView *squareView = [[UIView alloc] initWithFrame:CGRectMake(upperView.center.y - 2.5, upperView.frame.origin.y + upperView.frame.size.height-10, 5, 0)];
+    UIView *squareView = [[UIView alloc] initWithFrame:CGRectMake(upperView.center.y - 2.5, upperView.frame.origin.y + upperView.frame.size.height-10, 1, 0)];
     squareView.center = CGPointMake(upperView.center.x, squareView.center.y+9);
-    squareView.backgroundColor = [UIColor colorWithRed:0.945 green:0.510 blue:0.000 alpha:1.000];
+//    squareView.backgroundColor = [UIColor colorWithRed:0.945 green:0.510 blue:0.000 alpha:1.000];
+    squareView.backgroundColor = [UIColor lightGrayColor];
     squareView.alpha = 0.5;
     return squareView;
+}
+
+- (UIView *)infoWithLeftView:(UIView *)leftView infoCount:(int)count
+{
+    NSArray *yearArray = @[@"1982",@"1984",@"1985",@"1986",@"周家全家福",@"賴家全家福",@"2006.1.1 紀念日",@"2015.11.1 Wedding",@"2015.11.1 Wedding"];
+    NSArray *wordArray = @[@"周先生．鄧小姐 - 締結良緣\n揭開了周公館家歡樂生活的布幕",@"周廷俊\n帶著有點靦腆及幽默、溫和的個性來到這個世上",@"賴先生．張小姐 - 成家之始\n開起了賴家歡喜人生的大門",@"賴佳玟\n用有點好奇、 迷糊的個性以及甜滋滋的笑容，誕生了",@"一家五口，個性皆隨和風趣且獨立，雖然平時不會將肉麻的句子掛在嘴邊，但也是深深信任著每位家人",@"一家四口，一起相互扶持，雖然日子簡單、樸實，但家人永遠是最溫馨的避風港",@"一個色眯眯的周胖 一個水噹噹的米奇\n在這天成為人人稱羨的一對情侶",@"走過近10年的日子\n我們決定給彼此一輩子的幸福",@"我們挽著手，並肩同行於我們生命新頁中的每一天"];
+    
+    UIView *infoView = [[UIView alloc] initWithFrame:CGRectMake(leftView.frame.origin.x + leftView.frame.size.width + 20, leftView.frame.origin.y, SCREEN_BOUNDS.size.width - leftView.frame.origin.x - leftView.frame.size.width - 20-10, leftView.frame.size.height + 50)];
+    UILabel *yearLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, infoView.frame.size.width, 25)];
+    yearLabel.text = [NSString stringWithFormat:@"%@",[yearArray objectAtIndex:count]];
+    yearLabel.textColor = [UIColor whiteColor];
+    yearLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20.];
+    [infoView addSubview:yearLabel];
+    
+    UILabel *wordLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, yearLabel.frame.origin.y + yearLabel.frame.size.height +2, infoView.frame.size.width, 50)];
+    wordLabel.text = [NSString stringWithFormat:@"%@",[wordArray objectAtIndex:count]];
+    wordLabel.textColor = [UIColor whiteColor];
+    wordLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:14.];
+    wordLabel.numberOfLines = 0;
+    wordLabel.layer.shadowColor = [UIColor blackColor].CGColor;
+    wordLabel.layer.shadowOffset = CGSizeMake(3.0, 3.0);
+    wordLabel.layer.shadowRadius = 3.0;
+    wordLabel.layer.shadowOpacity = 1.0;
+    [infoView addSubview:wordLabel];
+    
+    
+    return infoView;
 }
 
 @end
