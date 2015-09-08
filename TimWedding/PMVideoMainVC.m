@@ -122,7 +122,7 @@
     scaleAnimation.springBounciness = 15.f;
     [circleView1.layer pop_addAnimation:scaleAnimation forKey:@"scaleAnim"];
     scaleAnimation.completionBlock = ^(POPAnimation *anim, BOOL finished) {
-        [UIView animateWithDuration:0.5f animations:^{
+        [UIView animateWithDuration:0.8f animations:^{
             if(i < 8){
                 squareView1.frame = CGRectMake(circleView1.center.x-2.5, circleView1.frame.origin.y + circleView1.frame.size.height, 1, 50);
             }
@@ -181,7 +181,7 @@
     yearLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20.];
     [infoView addSubview:yearLabel];
     
-    UILabel *wordLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, yearLabel.frame.origin.y + yearLabel.frame.size.height +2, infoView.frame.size.width, 50)];
+    UILabel *wordLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, yearLabel.frame.origin.y + yearLabel.frame.size.height +2, infoView.frame.size.width, 70)];
     wordLabel.text = [NSString stringWithFormat:@"%@",[wordArray objectAtIndex:count]];
     wordLabel.textColor = [UIColor whiteColor];
     wordLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:14.];
