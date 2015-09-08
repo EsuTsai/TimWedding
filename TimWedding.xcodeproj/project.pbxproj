@@ -1,0 +1,537 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1605A84E1B9F0F5C0089707F /* PMRootVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1605A84C1B9F0F5C0089707F /* PMRootVC.m */; };
+		1605A84F1B9F0F5C0089707F /* PMRootVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1605A84D1B9F0F5C0089707F /* PMRootVC.xib */; };
+		1605A8511B9F0F9C0089707F /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1605A8501B9F0F9C0089707F /* MediaPlayer.framework */; };
+		1605A8561B9F18B90089707F /* jc-4501.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1605A8541B9F18B90089707F /* jc-4501.jpg */; };
+		1605A8571B9F18B90089707F /* video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1605A8551B9F18B90089707F /* video.mp4 */; };
+		1605A85A1B9F1DC30089707F /* PMVideoMainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1605A8591B9F1DC30089707F /* PMVideoMainVC.m */; };
+		160CD1171B9EB5C50030BCBD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 160CD1161B9EB5C50030BCBD /* main.m */; };
+		160CD11A1B9EB5C50030BCBD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 160CD1191B9EB5C50030BCBD /* AppDelegate.m */; };
+		160CD11D1B9EB5C50030BCBD /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 160CD11C1B9EB5C50030BCBD /* ViewController.m */; };
+		160CD1201B9EB5C50030BCBD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 160CD11E1B9EB5C50030BCBD /* Main.storyboard */; };
+		160CD1221B9EB5C60030BCBD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 160CD1211B9EB5C60030BCBD /* Images.xcassets */; };
+		160CD1251B9EB5C60030BCBD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 160CD1231B9EB5C60030BCBD /* LaunchScreen.xib */; };
+		160CD1311B9EB5C60030BCBD /* TimWeddingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 160CD1301B9EB5C60030BCBD /* TimWeddingTests.m */; };
+		160CD13F1B9EB6D40030BCBD /* PMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 160CD13E1B9EB6D40030BCBD /* PMViewController.m */; };
+		3C0B20B961E44A869C309C36 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8591FB51B9254696B108EEE8 /* libPods.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		160CD12B1B9EB5C60030BCBD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 160CD1091B9EB5C50030BCBD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 160CD1101B9EB5C50030BCBD;
+			remoteInfo = TimWedding;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1605A84B1B9F0F5B0089707F /* PMRootVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMRootVC.h; sourceTree = "<group>"; };
+		1605A84C1B9F0F5C0089707F /* PMRootVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMRootVC.m; sourceTree = "<group>"; };
+		1605A84D1B9F0F5C0089707F /* PMRootVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PMRootVC.xib; sourceTree = "<group>"; };
+		1605A8501B9F0F9C0089707F /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		1605A8541B9F18B90089707F /* jc-4501.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "jc-4501.jpg"; sourceTree = "<group>"; };
+		1605A8551B9F18B90089707F /* video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = video.mp4; sourceTree = "<group>"; };
+		1605A8581B9F1DC30089707F /* PMVideoMainVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMVideoMainVC.h; sourceTree = "<group>"; };
+		1605A8591B9F1DC30089707F /* PMVideoMainVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMVideoMainVC.m; sourceTree = "<group>"; };
+		160CD1111B9EB5C50030BCBD /* TimWedding.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimWedding.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		160CD1151B9EB5C50030BCBD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		160CD1161B9EB5C50030BCBD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		160CD1181B9EB5C50030BCBD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		160CD1191B9EB5C50030BCBD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		160CD11B1B9EB5C50030BCBD /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		160CD11C1B9EB5C50030BCBD /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		160CD11F1B9EB5C50030BCBD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		160CD1211B9EB5C60030BCBD /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		160CD1241B9EB5C60030BCBD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		160CD12A1B9EB5C60030BCBD /* TimWeddingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TimWeddingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		160CD12F1B9EB5C60030BCBD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		160CD1301B9EB5C60030BCBD /* TimWeddingTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimWeddingTests.m; sourceTree = "<group>"; };
+		160CD13D1B9EB6D40030BCBD /* PMViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMViewController.h; sourceTree = "<group>"; };
+		160CD13E1B9EB6D40030BCBD /* PMViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMViewController.m; sourceTree = "<group>"; };
+		8591FB51B9254696B108EEE8 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F2D7FFAB37F4057B974A3D9 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		160CD10E1B9EB5C50030BCBD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1605A8511B9F0F9C0089707F /* MediaPlayer.framework in Frameworks */,
+				3C0B20B961E44A869C309C36 /* libPods.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		160CD1271B9EB5C60030BCBD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1605A8521B9F18B90089707F /* Resouces */ = {
+			isa = PBXGroup;
+			children = (
+				1605A8531B9F18B90089707F /* images */,
+				1605A8551B9F18B90089707F /* video.mp4 */,
+			);
+			path = Resouces;
+			sourceTree = SOURCE_ROOT;
+		};
+		1605A8531B9F18B90089707F /* images */ = {
+			isa = PBXGroup;
+			children = (
+				1605A8541B9F18B90089707F /* jc-4501.jpg */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+		160CD1081B9EB5C50030BCBD = {
+			isa = PBXGroup;
+			children = (
+				1605A8501B9F0F9C0089707F /* MediaPlayer.framework */,
+				160CD1131B9EB5C50030BCBD /* TimWedding */,
+				160CD12D1B9EB5C60030BCBD /* TimWeddingTests */,
+				160CD1121B9EB5C50030BCBD /* Products */,
+				9F2D7FFAB37F4057B974A3D9 /* Pods.xcconfig */,
+				B98387E83093412CB45ED5D5 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		160CD1121B9EB5C50030BCBD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				160CD1111B9EB5C50030BCBD /* TimWedding.app */,
+				160CD12A1B9EB5C60030BCBD /* TimWeddingTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		160CD1131B9EB5C50030BCBD /* TimWedding */ = {
+			isa = PBXGroup;
+			children = (
+				160CD1181B9EB5C50030BCBD /* AppDelegate.h */,
+				160CD1191B9EB5C50030BCBD /* AppDelegate.m */,
+				160CD11B1B9EB5C50030BCBD /* ViewController.h */,
+				160CD11C1B9EB5C50030BCBD /* ViewController.m */,
+				1605A84B1B9F0F5B0089707F /* PMRootVC.h */,
+				1605A84C1B9F0F5C0089707F /* PMRootVC.m */,
+				1605A84D1B9F0F5C0089707F /* PMRootVC.xib */,
+				160CD13D1B9EB6D40030BCBD /* PMViewController.h */,
+				160CD13E1B9EB6D40030BCBD /* PMViewController.m */,
+				1605A8581B9F1DC30089707F /* PMVideoMainVC.h */,
+				1605A8591B9F1DC30089707F /* PMVideoMainVC.m */,
+				160CD11E1B9EB5C50030BCBD /* Main.storyboard */,
+				160CD1211B9EB5C60030BCBD /* Images.xcassets */,
+				160CD1231B9EB5C60030BCBD /* LaunchScreen.xib */,
+				160CD1141B9EB5C50030BCBD /* Supporting Files */,
+			);
+			path = TimWedding;
+			sourceTree = "<group>";
+		};
+		160CD1141B9EB5C50030BCBD /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1605A8521B9F18B90089707F /* Resouces */,
+				160CD1151B9EB5C50030BCBD /* Info.plist */,
+				160CD1161B9EB5C50030BCBD /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		160CD12D1B9EB5C60030BCBD /* TimWeddingTests */ = {
+			isa = PBXGroup;
+			children = (
+				160CD1301B9EB5C60030BCBD /* TimWeddingTests.m */,
+				160CD12E1B9EB5C60030BCBD /* Supporting Files */,
+			);
+			path = TimWeddingTests;
+			sourceTree = "<group>";
+		};
+		160CD12E1B9EB5C60030BCBD /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				160CD12F1B9EB5C60030BCBD /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B98387E83093412CB45ED5D5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8591FB51B9254696B108EEE8 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		160CD1101B9EB5C50030BCBD /* TimWedding */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 160CD1341B9EB5C60030BCBD /* Build configuration list for PBXNativeTarget "TimWedding" */;
+			buildPhases = (
+				87C987A48B6A40F9AECAE480 /* Check Pods Manifest.lock */,
+				160CD10D1B9EB5C50030BCBD /* Sources */,
+				160CD10E1B9EB5C50030BCBD /* Frameworks */,
+				160CD10F1B9EB5C50030BCBD /* Resources */,
+				9CED563B7C92459492ECA943 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TimWedding;
+			productName = TimWedding;
+			productReference = 160CD1111B9EB5C50030BCBD /* TimWedding.app */;
+			productType = "com.apple.product-type.application";
+		};
+		160CD1291B9EB5C60030BCBD /* TimWeddingTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 160CD1371B9EB5C60030BCBD /* Build configuration list for PBXNativeTarget "TimWeddingTests" */;
+			buildPhases = (
+				160CD1261B9EB5C60030BCBD /* Sources */,
+				160CD1271B9EB5C60030BCBD /* Frameworks */,
+				160CD1281B9EB5C60030BCBD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				160CD12C1B9EB5C60030BCBD /* PBXTargetDependency */,
+			);
+			name = TimWeddingTests;
+			productName = TimWeddingTests;
+			productReference = 160CD12A1B9EB5C60030BCBD /* TimWeddingTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		160CD1091B9EB5C50030BCBD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = PM;
+				LastUpgradeCheck = 0640;
+				ORGANIZATIONNAME = "Esu Tsai";
+				TargetAttributes = {
+					160CD1101B9EB5C50030BCBD = {
+						CreatedOnToolsVersion = 6.4;
+					};
+					160CD1291B9EB5C60030BCBD = {
+						CreatedOnToolsVersion = 6.4;
+						TestTargetID = 160CD1101B9EB5C50030BCBD;
+					};
+				};
+			};
+			buildConfigurationList = 160CD10C1B9EB5C50030BCBD /* Build configuration list for PBXProject "TimWedding" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 160CD1081B9EB5C50030BCBD;
+			productRefGroup = 160CD1121B9EB5C50030BCBD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				160CD1101B9EB5C50030BCBD /* TimWedding */,
+				160CD1291B9EB5C60030BCBD /* TimWeddingTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		160CD10F1B9EB5C50030BCBD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				160CD1201B9EB5C50030BCBD /* Main.storyboard in Resources */,
+				1605A8571B9F18B90089707F /* video.mp4 in Resources */,
+				1605A84F1B9F0F5C0089707F /* PMRootVC.xib in Resources */,
+				1605A8561B9F18B90089707F /* jc-4501.jpg in Resources */,
+				160CD1251B9EB5C60030BCBD /* LaunchScreen.xib in Resources */,
+				160CD1221B9EB5C60030BCBD /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		160CD1281B9EB5C60030BCBD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		87C987A48B6A40F9AECAE480 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		9CED563B7C92459492ECA943 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		160CD10D1B9EB5C50030BCBD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				160CD11D1B9EB5C50030BCBD /* ViewController.m in Sources */,
+				160CD11A1B9EB5C50030BCBD /* AppDelegate.m in Sources */,
+				1605A85A1B9F1DC30089707F /* PMVideoMainVC.m in Sources */,
+				160CD1171B9EB5C50030BCBD /* main.m in Sources */,
+				1605A84E1B9F0F5C0089707F /* PMRootVC.m in Sources */,
+				160CD13F1B9EB6D40030BCBD /* PMViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		160CD1261B9EB5C60030BCBD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				160CD1311B9EB5C60030BCBD /* TimWeddingTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		160CD12C1B9EB5C60030BCBD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 160CD1101B9EB5C50030BCBD /* TimWedding */;
+			targetProxy = 160CD12B1B9EB5C60030BCBD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		160CD11E1B9EB5C50030BCBD /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				160CD11F1B9EB5C50030BCBD /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		160CD1231B9EB5C60030BCBD /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				160CD1241B9EB5C60030BCBD /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		160CD1321B9EB5C60030BCBD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		160CD1331B9EB5C60030BCBD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		160CD1351B9EB5C60030BCBD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9F2D7FFAB37F4057B974A3D9 /* Pods.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = TimWedding/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		160CD1361B9EB5C60030BCBD /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9F2D7FFAB37F4057B974A3D9 /* Pods.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = TimWedding/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		160CD1381B9EB5C60030BCBD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = TimWeddingTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TimWedding.app/TimWedding";
+			};
+			name = Debug;
+		};
+		160CD1391B9EB5C60030BCBD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = TimWeddingTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TimWedding.app/TimWedding";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		160CD10C1B9EB5C50030BCBD /* Build configuration list for PBXProject "TimWedding" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				160CD1321B9EB5C60030BCBD /* Debug */,
+				160CD1331B9EB5C60030BCBD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		160CD1341B9EB5C60030BCBD /* Build configuration list for PBXNativeTarget "TimWedding" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				160CD1351B9EB5C60030BCBD /* Debug */,
+				160CD1361B9EB5C60030BCBD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		160CD1371B9EB5C60030BCBD /* Build configuration list for PBXNativeTarget "TimWeddingTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				160CD1381B9EB5C60030BCBD /* Debug */,
+				160CD1391B9EB5C60030BCBD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 160CD1091B9EB5C50030BCBD /* Project object */;
+}
