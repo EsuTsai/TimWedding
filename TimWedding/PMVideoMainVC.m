@@ -6,7 +6,6 @@
 //  Copyright (c) 2015年 Esu Tsai. All rights reserved.
 //
 
-#define SCREEN_BOUNDS ([[UIScreen mainScreen] bounds])
 
 #import "PMVideoMainVC.h"
 #import <MediaPlayer/MediaPlayer.h>
@@ -122,7 +121,7 @@
     scaleAnimation.springBounciness = 15.f;
     [circleView1.layer pop_addAnimation:scaleAnimation forKey:@"scaleAnim"];
     scaleAnimation.completionBlock = ^(POPAnimation *anim, BOOL finished) {
-        [UIView animateWithDuration:0.8f animations:^{
+        [UIView animateWithDuration:0.4f animations:^{
             if(i < 8){
                 squareView1.frame = CGRectMake(circleView1.center.x-2.5, circleView1.frame.origin.y + circleView1.frame.size.height, 1, 50);
             }
@@ -171,10 +170,28 @@
 
 - (UIView *)infoWithLeftView:(UIView *)leftView infoCount:(int)count
 {
-    NSArray *yearArray = @[@"1982",@"1984",@"1985",@"1986",@"周家全家福",@"賴家全家福",@"2006.1.1 紀念日",@"2015.11.1 Wedding",@"2015.11.1 Wedding"];
-    NSArray *wordArray = @[@"周先生．鄧小姐 - 締結良緣\n揭開了周公館家歡樂生活的布幕",@"周廷俊\n帶著有點靦腆及幽默、溫和的個性來到這個世上",@"賴先生．張小姐 - 成家之始\n開起了賴家歡喜人生的大門",@"賴佳玟\n用有點好奇、 迷糊的個性以及甜滋滋的笑容，誕生了",@"一家五口，個性皆隨和風趣且獨立，雖然平時不會將肉麻的句子掛在嘴邊，但也是深深信任著每位家人",@"一家四口，一起相互扶持，雖然日子簡單、樸實，但家人永遠是最溫馨的避風港",@"一個色眯眯的周胖 一個水噹噹的米奇\n在這天成為人人稱羨的一對情侶",@"走過近10年的日子\n我們決定給彼此一輩子的幸福",@"我們挽著手，並肩同行於我們生命新頁中的每一天"];
+    NSArray *yearArray = @[@"1982",
+                           @"1984",
+                           @"1985",
+                           @"1986",
+                           @"周家全家福",
+                           @"賴家全家福",
+                           @"2006.1.1 紀念日",
+                           @"2015.11.1 Wedding",
+                           @"2015.11.1 Wedding"];
+    
+    NSArray *wordArray = @[@"周先生．鄧小姐 - 締結良緣\n揭開了周公館家歡樂生活的布幕",
+                           @"周廷俊\n帶著有點靦腆及幽默、溫和的個性來到這個世上",
+                           @"賴先生．張小姐 - 成家之始\n開起了賴家歡喜人生的大門",
+                           @"賴佳玟\n用有點好奇、 迷糊的個性以及甜滋滋的笑容，誕生了",
+                           @"一家五口，個性皆隨和風趣且獨立，雖然平時不會將肉麻的句子掛在嘴邊，但也是深深信任著每位家人",
+                           @"一家四口，一起相互扶持，雖然日子簡單、樸實，但家人永遠是最溫馨的避風港",
+                           @"一個色眯眯的周胖\n一個水噹噹的米奇\n在這天成為人人稱羨的一對情侶",
+                           @"走過近10年的日子\n我們決定給彼此一輩子的幸福",
+                           @"我們挽著手，並肩同行於我們生命新頁中的每一天"];
     
     UIView *infoView = [[UIView alloc] initWithFrame:CGRectMake(leftView.frame.origin.x + leftView.frame.size.width + 20, leftView.frame.origin.y, SCREEN_BOUNDS.size.width - leftView.frame.origin.x - leftView.frame.size.width - 20-10, leftView.frame.size.height + 50)];
+        
     UILabel *yearLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, infoView.frame.size.width, 25)];
     yearLabel.text = [NSString stringWithFormat:@"%@",[yearArray objectAtIndex:count]];
     yearLabel.textColor = [UIColor whiteColor];

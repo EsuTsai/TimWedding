@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "PMRootVC.h"
+#import "PMVideoMainVC.h"
 
 @interface AppDelegate ()
 
@@ -25,7 +26,14 @@
     UINavigationController *navigationController = nil;
     navigationController = [[UINavigationController alloc] initWithRootViewController:[self rootViewController]];
     
-    self.window.rootViewController = navigationController;
+    PMRootVC *rootVC = [[PMRootVC alloc] initWithNibName:@"PMRootVC" bundle:nil];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:rootVC];
+    PMVideoMainVC *videoVC = [[PMVideoMainVC alloc] init];
+    NSArray *viewController = @[navController,videoVC];
+    UITabBarController *tabView = [[UITabBarController alloc] init];
+    tabView.viewControllers = viewController;
+    
+    self.window.rootViewController = tabView;
     [self.window makeKeyAndVisible];
 
     

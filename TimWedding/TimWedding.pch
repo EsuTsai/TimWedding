@@ -1,0 +1,20 @@
+//
+//  TimWedding.pch
+//  TimWedding
+//
+//  Created by Esu Tsai on 2015/9/10.
+//  Copyright (c) 2015年 Esu Tsai. All rights reserved.
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_3_0
+#warning "This project uses features only available in iOS SDK 3.0 and later."
+#endif
+
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import "PMConfig.h"
+
+#endif

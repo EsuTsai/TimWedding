@@ -6,9 +6,9 @@
 //  Copyright (c) 2015年 Esu Tsai. All rights reserved.
 //
 
-#define SCREEN_BOUNDS ([[UIScreen mainScreen] bounds])
 #import "PMRootVC.h"
 #import "PMVideoMainVC.h"
+#import "PMPhotoVC.h"
 
 @interface PMRootVC ()
 
@@ -27,6 +27,13 @@
     [btn addTarget:self action:@selector(btnPress) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn];
     
+    UIButton *btn1 = [[UIButton alloc] initWithFrame:CGRectMake(btn.frame.origin.x, btn.frame.origin.y + btn.frame.size.height+10, btn.frame.size.width, btn.frame.size.height)];
+    [btn1 setTitle:@"Photo" forState:UIControlStateNormal];
+    btn1.titleLabel.font = [UIFont fontWithName:@"Avenir-Light" size:16.];
+    btn1.backgroundColor = [UIColor colorWithRed:0.922 green:0.098 blue:0.176 alpha:1.000];
+    [btn1 addTarget:self action:@selector(btn1Press) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btn1];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -38,6 +45,12 @@
 {
     PMVideoMainVC *videoVC = [[PMVideoMainVC alloc] init];
     [self.navigationController pushViewController:videoVC animated:YES];
+}
+
+- (void)btn1Press
+{
+    PMPhotoVC *photoVC = [[PMPhotoVC alloc] init];
+    [self.navigationController pushViewController:photoVC animated:YES];
 }
 
 @end

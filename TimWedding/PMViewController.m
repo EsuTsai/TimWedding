@@ -7,6 +7,7 @@
 //
 
 #import "PMViewController.h"
+#import "PMVideoMainVC.h"
 
 @interface PMViewController ()
 
@@ -26,6 +27,9 @@
     [self.navigationController setNavigationBarHidden:![self shouldShowNavigationBar] animated:YES];
 //    [[UIApplication sharedApplication] setStatusBarStyle:[self preferredStatusBarStyle] animated:YES];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
+    
+    PMVideoMainVC *videoVC = [[PMVideoMainVC alloc] init];
+    NSArray *viewController = @[videoVC];
 
 }
 
