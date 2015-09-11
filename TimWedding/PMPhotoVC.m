@@ -22,11 +22,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"婚紗";
     // Do any additional setup after loading the view.
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    layout.itemSize =CGSizeMake((SCREEN_BOUNDS.size.width/2)-0.5, (SCREEN_BOUNDS.size.width/2)-0.5);
+//    layout.itemSize =CGSizeMake((SCREEN_BOUNDS.size.width), (SCREEN_BOUNDS.size.width/2));
     
-    photoView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_BOUNDS.size.width, SCREEN_BOUNDS.size.height-64) collectionViewLayout:layout];
+    photoView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_BOUNDS.size.width, SCREEN_BOUNDS.size.height-64-49) collectionViewLayout:layout];
     [self.view addSubview:photoView];
     
     [photoView registerClass:[PMPhotoCell class] forCellWithReuseIdentifier:@"CustomCell"];
@@ -49,7 +50,8 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    PMPhotoCell *cell = (PMPhotoCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"CustomCell" forIndexPath:indexPath];
+    static NSString *cellIdentifier = @"CustomCell";
+    PMPhotoCell *cell = (PMPhotoCell *)[collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
     
     cell.backgroundColor = [UIColor darkGrayColor];
     NSString *picUrlString = [NSString stringWithFormat:@"%@",[[photoList objectAtIndex:indexPath.row] valueForKey:@"url"]];
@@ -64,6 +66,14 @@
     return cell;
 }
 
+- (CGSize)collectionView:(UICollectionView *)collectionView
+                  layout:(UICollectionViewLayout *)collectionViewLayout
+  sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    CGSize cellSize = CGSizeMake((SCREEN_BOUNDS.size.width/2), (SCREEN_BOUNDS.size.width/2));
+    return cellSize;
+}
+
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
     return UIEdgeInsetsMake(0, 0, 0, 0);
@@ -71,13 +81,13 @@
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 {
-    return 1;
+    return 0;
 }
 
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
-    return 1;
+    return 0;
 }
 
 - (void)didTapImage:(UITapGestureRecognizer *)tapGesture

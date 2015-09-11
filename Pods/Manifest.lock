@@ -21,6 +21,21 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - DACircularProgress (2.2.0)
+  - FontAwesomeKit (2.1.8):
+    - FontAwesomeKit/Core
+    - FontAwesomeKit/FontAwesome
+    - FontAwesomeKit/FoundationIcons
+    - FontAwesomeKit/IonIcons
+    - FontAwesomeKit/Zocial
+  - FontAwesomeKit/Core (2.1.8)
+  - FontAwesomeKit/FontAwesome (2.1.8):
+    - FontAwesomeKit/Core
+  - FontAwesomeKit/FoundationIcons (2.1.8):
+    - FontAwesomeKit/Core
+  - FontAwesomeKit/IonIcons (2.1.8):
+    - FontAwesomeKit/Core
+  - FontAwesomeKit/Zocial (2.1.8):
+    - FontAwesomeKit/Core
   - pop (1.0.7)
   - SDWebImage (3.7.1):
     - SDWebImage/Core
@@ -29,12 +44,14 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (= 2.5.3)
   - DACircularProgress (= 2.2.0)
+  - FontAwesomeKit (~> 2.1.0)
   - pop (= 1.0.7)
   - SDWebImage (= 3.7.1)
 
 SPEC CHECKSUMS:
   AFNetworking: e1d86c2a96bb5d2e7408da36149806706ee122fe
   DACircularProgress: 0f92b77239d5f3c612fc66185e2998391ac8e054
+  FontAwesomeKit: 64759fb28b5d2e74a1bd81553d7c11ca10e32179
   pop: 628ffc631644601567ee8bfaaaea493ebd7d0923
   SDWebImage: ed3095af2ff88b436426037444979b917f6c5575
 

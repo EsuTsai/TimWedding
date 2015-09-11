@@ -10,5 +10,5 @@
 #define TimWedding_PMConfig_h
 
 #define SCREEN_BOUNDS ([[UIScreen mainScreen] bounds])
-static  NSString * const defaultFont = @"STHeitiTC-Light";
+static  NSString * const defaultFont = @"MalayalamSangamMN";
 #endif

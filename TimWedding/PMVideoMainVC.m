@@ -33,8 +33,8 @@
     self.player.repeatMode = MPMovieRepeatModeOne;
     self.player.controlStyle = MPMovieControlStyleNone;
     //    player.view.frame = self.view.bounds;
-    self.player.view.frame = CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height);
-    self.player.view.center = CGPointMake([[UIScreen mainScreen] bounds].size.width/2, [[UIScreen mainScreen] bounds].size.height/2);
+    self.player.view.frame = CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height-49);
+    self.player.view.center = CGPointMake([[UIScreen mainScreen] bounds].size.width/2, ([[UIScreen mainScreen] bounds].size.height-49)/2);
     [self.view addSubview:self.player.view];
 //    [self.player prepareToPlay];
     [self.player play];
@@ -51,7 +51,7 @@
     
     backgroundView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_BOUNDS.size.width, SCREEN_BOUNDS.size.height)];
     backgroundView.scrollEnabled = YES;
-    backgroundView.contentSize=CGSizeMake(SCREEN_BOUNDS.size.width, 1300);
+    backgroundView.contentSize=CGSizeMake(SCREEN_BOUNDS.size.width, 1200);
     
     [self.view addSubview:backgroundView];
     //    UIVisualEffect *blurEffect;
@@ -63,7 +63,7 @@
     //    visualEffectView.frame = self.player.view.bounds;
     //    [self.player.view addSubview:visualEffectView];
     
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 30, SCREEN_BOUNDS.size.width, 40)];
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 50, SCREEN_BOUNDS.size.width, 40)];
     titleLabel.text = @"POM & MIKI";
     titleLabel.textAlignment = NSTextAlignmentCenter;
     titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:40.];
@@ -73,6 +73,18 @@
     [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(startTimeline) userInfo:nil repeats:NO];
     
     
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.player play];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self.player pause];
 }
 
 - (void)didReceiveMemoryWarning {

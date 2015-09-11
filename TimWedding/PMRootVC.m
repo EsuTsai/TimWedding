@@ -9,6 +9,7 @@
 #import "PMRootVC.h"
 #import "PMVideoMainVC.h"
 #import "PMPhotoVC.h"
+#import <FontAwesomeKit/FontAwesomeKit.h>
 
 @interface PMRootVC ()
 
@@ -33,6 +34,13 @@
     btn1.backgroundColor = [UIColor colorWithRed:0.922 green:0.098 blue:0.176 alpha:1.000];
     [btn1 addTarget:self action:@selector(btn1Press) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn1];
+    
+    FAKFontAwesome *starIcon = [FAKFontAwesome starIconWithSize:15];
+    [starIcon addAttribute:NSForegroundColorAttributeName value:[UIColor
+                                                                 blackColor]];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 100, 44, 44)];
+    label.attributedText = [starIcon attributedString];
+    [self.view addSubview:label];
     
 }
 

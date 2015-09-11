@@ -43,7 +43,6 @@
         [tap setNumberOfTapsRequired:1];
         [self addGestureRecognizer:tap];
         
-        
         //We can also prepare views with additional contents here!
         //just add more labels/views/whatever you want.
     }
