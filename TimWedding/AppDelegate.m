@@ -10,7 +10,9 @@
 #import "PMRootVC.h"
 #import "PMVideoMainVC.h"
 #import "PMPhotoVC.h"
+#import "PMFeedVC.h"
 #import <FontAwesomeKit/FontAwesomeKit.h>
+#import <Parse/Parse.h>
 
 @interface AppDelegate ()
 
@@ -28,23 +30,39 @@
     UINavigationController *navigationController = nil;
     navigationController = [[UINavigationController alloc] initWithRootViewController:[self rootViewController]];
     
+    
+    [Parse setApplicationId:@"rqRfR8SaRL64yqhFO4LAUSZn4yVum5w7TS5uJKCC"
+                  clientKey:@"lJocu95bQQhJaFm3MiQEDnRZMrPUgAXqKCrFcYd6"];
+    
+    
+    PMFeedVC *feedVC = [[PMFeedVC alloc] init];
+    UINavigationController *navController0 = [[UINavigationController alloc] initWithRootViewController:feedVC];
+    FAKIonIcons *feedIcon = [FAKIonIcons chatbubbleWorkingIconWithSize:28];
+    [feedIcon addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor]];
+    UIImage *feedImage = [feedIcon imageWithSize:CGSizeMake(28, 28)];
+    UITabBarItem *item0 = [[UITabBarItem alloc] initWithTitle:nil image:feedImage tag:1];
+    feedVC.tabBarItem = item0;
+    feedVC.tabBarItem.imageInsets= UIEdgeInsetsMake(5, 0, -5, 0);
+    
     PMPhotoVC *photoVC = [[PMPhotoVC alloc] init];
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:photoVC];
-    FAKIonIcons *photoIcon = [FAKIonIcons imagesIconWithSize:22];
+    FAKIonIcons *photoIcon = [FAKIonIcons imagesIconWithSize:28];
     [photoIcon addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor]];
-    UIImage *photoImage = [photoIcon imageWithSize:CGSizeMake(22, 22)];
-    UITabBarItem *item1 = [[UITabBarItem alloc] initWithTitle:@"婚紗" image:photoImage tag:1];
+    UIImage *photoImage = [photoIcon imageWithSize:CGSizeMake(28, 28)];
+    UITabBarItem *item1 = [[UITabBarItem alloc] initWithTitle:nil image:photoImage tag:1];
     photoVC.tabBarItem = item1;
-    
+    photoVC.tabBarItem.imageInsets= UIEdgeInsetsMake(5, 0, -5, 0);
+
     
     PMVideoMainVC *videoVC = [[PMVideoMainVC alloc] init];
-    FAKIonIcons *bookIcon = [FAKIonIcons icecreamIconWithSize:22];
+    FAKIonIcons *bookIcon = [FAKIonIcons wineglassIconWithSize:28];
     [bookIcon addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor]];
-    UIImage *videoImage = [bookIcon imageWithSize:CGSizeMake(22, 22)];
-    UITabBarItem *item2 = [[UITabBarItem alloc] initWithTitle:@"周胖米奇故事" image:videoImage tag:2];
+    UIImage *videoImage = [bookIcon imageWithSize:CGSizeMake(28, 28)];
+    UITabBarItem *item2 = [[UITabBarItem alloc] initWithTitle:nil image:videoImage tag:2];
     videoVC.tabBarItem = item2;
+    videoVC.tabBarItem.imageInsets= UIEdgeInsetsMake(5, 0, -5, 0);
     
-    NSArray *viewController = @[navController,videoVC];
+    NSArray *viewController = @[navController0,navController,videoVC];
     UITabBarController *tabView = [[UITabBarController alloc] init];
     tabView.viewControllers = viewController;
     tabView.tabBar.barTintColor =  [UIColor colorWithRed:0.133 green:0.133 blue:0.133 alpha:1.000];
@@ -54,6 +72,7 @@
     [[UITabBarItem appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor colorWithRed:0.925 green:0.957 blue:0.569 alpha:1.000]}
                                              forState:UIControlStateSelected];
     [[UITabBar appearance] setTintColor:[UIColor colorWithRed:0.925 green:0.957 blue:0.569 alpha:1.000]];
+    tabView.tabBarItem.imageInsets = UIEdgeInsetsMake(5, 0, -5, 0);
     self.window.rootViewController = tabView;
     [self.window makeKeyAndVisible];
 

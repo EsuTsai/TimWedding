@@ -51,7 +51,8 @@
     
     backgroundView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_BOUNDS.size.width, SCREEN_BOUNDS.size.height)];
     backgroundView.scrollEnabled = YES;
-    backgroundView.contentSize=CGSizeMake(SCREEN_BOUNDS.size.width, 1200);
+    backgroundView.contentSize=CGSizeMake(SCREEN_BOUNDS.size.width, 1150);
+    backgroundView.showsVerticalScrollIndicator = NO;
     
     [self.view addSubview:backgroundView];
     //    UIVisualEffect *blurEffect;

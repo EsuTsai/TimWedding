@@ -9,12 +9,22 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-Bolts.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-DACircularProgress.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
 		<key>Pods-FontAwesomeKit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-Parse.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -37,32 +47,42 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>5F4032ED34B04CFB80BF8197</key>
+		<key>6A060A3CA3A54976B8C83B3D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>603CD52078694BC887BF0195</key>
+		<key>6E43D3E7207740CDB65DEC61</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6C5599D807D046B5A7449349</key>
+		<key>82CCB080E6D8426AA4A935DE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>72A476D35FD04ACF90CCCF97</key>
+		<key>9C463E0101F647D8A2D8F56A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>77F21E2370824256859902BB</key>
+		<key>AC16DBE23C994C7BAE9169E4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>994A4E40159A4921A5B207D2</key>
+		<key>C6BDCAD05481451EB8DA807A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E283096F29744CDCB059F788</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FB70BA97D13B4FC79B433527</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -48,6 +48,12 @@
 #define COCOAPODS_VERSION_MINOR_AFNetworking_UIKit 5
 #define COCOAPODS_VERSION_PATCH_AFNetworking_UIKit 3
 
+// Bolts/Tasks
+#define COCOAPODS_POD_AVAILABLE_Bolts_Tasks
+#define COCOAPODS_VERSION_MAJOR_Bolts_Tasks 1
+#define COCOAPODS_VERSION_MINOR_Bolts_Tasks 2
+#define COCOAPODS_VERSION_PATCH_Bolts_Tasks 2
+
 // DACircularProgress
 #define COCOAPODS_POD_AVAILABLE_DACircularProgress
 #define COCOAPODS_VERSION_MAJOR_DACircularProgress 2
@@ -89,6 +95,12 @@
 #define COCOAPODS_VERSION_MAJOR_FontAwesomeKit_Zocial 2
 #define COCOAPODS_VERSION_MINOR_FontAwesomeKit_Zocial 1
 #define COCOAPODS_VERSION_PATCH_FontAwesomeKit_Zocial 8
+
+// Parse
+#define COCOAPODS_POD_AVAILABLE_Parse
+#define COCOAPODS_VERSION_MAJOR_Parse 1
+#define COCOAPODS_VERSION_MINOR_Parse 8
+#define COCOAPODS_VERSION_PATCH_Parse 3
 
 // SDWebImage
 #define COCOAPODS_POD_AVAILABLE_SDWebImage
