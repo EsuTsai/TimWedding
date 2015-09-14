@@ -55,6 +55,8 @@
 		16C792DD1B9F58A400E8A417 /* 6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 16C792D51B9F58A400E8A417 /* 6.jpg */; };
 		16C792DE1B9F58A400E8A417 /* 7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 16C792D61B9F58A400E8A417 /* 7.jpg */; };
 		16C792DF1B9F58A400E8A417 /* 8.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 16C792D71B9F58A400E8A417 /* 8.jpg */; };
+		16DE494F1BA72CE50085D87B /* NSString+Hash.m in Sources */ = {isa = PBXBuildFile; fileRef = 16DE494E1BA72CE50085D87B /* NSString+Hash.m */; };
+		16DE49521BA72EFE0085D87B /* PMUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 16DE49511BA72EFE0085D87B /* PMUtility.m */; };
 		3C0B20B961E44A869C309C36 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8591FB51B9254696B108EEE8 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -143,6 +145,10 @@
 		16C792D51B9F58A400E8A417 /* 6.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 6.jpg; sourceTree = "<group>"; };
 		16C792D61B9F58A400E8A417 /* 7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 7.jpg; sourceTree = "<group>"; };
 		16C792D71B9F58A400E8A417 /* 8.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 8.jpg; sourceTree = "<group>"; };
+		16DE494D1BA72CE50085D87B /* NSString+Hash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Hash.h"; sourceTree = "<group>"; };
+		16DE494E1BA72CE50085D87B /* NSString+Hash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Hash.m"; sourceTree = "<group>"; };
+		16DE49501BA72EFE0085D87B /* PMUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMUtility.h; sourceTree = "<group>"; };
+		16DE49511BA72EFE0085D87B /* PMUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMUtility.m; sourceTree = "<group>"; };
 		8591FB51B9254696B108EEE8 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F2D7FFAB37F4057B974A3D9 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -264,6 +270,10 @@
 				160CD1191B9EB5C50030BCBD /* AppDelegate.m */,
 				160CD11B1B9EB5C50030BCBD /* ViewController.h */,
 				160CD11C1B9EB5C50030BCBD /* ViewController.m */,
+				16DE494D1BA72CE50085D87B /* NSString+Hash.h */,
+				16DE494E1BA72CE50085D87B /* NSString+Hash.m */,
+				16DE49501BA72EFE0085D87B /* PMUtility.h */,
+				16DE49511BA72EFE0085D87B /* PMUtility.m */,
 				1605A84B1B9F0F5B0089707F /* PMRootVC.h */,
 				1605A84C1B9F0F5C0089707F /* PMRootVC.m */,
 				1605A84D1B9F0F5C0089707F /* PMRootVC.xib */,
@@ -494,6 +504,7 @@
 				16091B661BA1D07100F6274A /* PMPhotoVC.m in Sources */,
 				16C3AB661BA54DB8001D26C9 /* PMFeedVC.m in Sources */,
 				16091B841BA1EB9600F6274A /* IDMPhotoBrowser.m in Sources */,
+				16DE49521BA72EFE0085D87B /* PMUtility.m in Sources */,
 				160CD11A1B9EB5C50030BCBD /* AppDelegate.m in Sources */,
 				16091B861BA1EB9600F6274A /* IDMTapDetectingView.m in Sources */,
 				16C3AB711BA5570B001D26C9 /* PMSelectPhotoVC.m in Sources */,
@@ -502,6 +513,7 @@
 				16091B851BA1EB9600F6274A /* IDMTapDetectingImageView.m in Sources */,
 				160CD1171B9EB5C50030BCBD /* main.m in Sources */,
 				1605A84E1B9F0F5C0089707F /* PMRootVC.m in Sources */,
+				16DE494F1BA72CE50085D87B /* NSString+Hash.m in Sources */,
 				16091B801BA1EB9600F6274A /* IDMCaptionView.m in Sources */,
 				16091B821BA1EB9600F6274A /* IDMPhoto.m in Sources */,
 				160CD13F1B9EB6D40030BCBD /* PMViewController.m in Sources */,

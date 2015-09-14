@@ -13,6 +13,7 @@
 #import "PMFeedVC.h"
 #import <FontAwesomeKit/FontAwesomeKit.h>
 #import <Parse/Parse.h>
+#import "NSString+Hash.h"
 
 @interface AppDelegate ()
 
@@ -34,56 +35,23 @@
     [Parse setApplicationId:@"rqRfR8SaRL64yqhFO4LAUSZn4yVum5w7TS5uJKCC"
                   clientKey:@"lJocu95bQQhJaFm3MiQEDnRZMrPUgAXqKCrFcYd6"];
     
-    
-    PMFeedVC *feedVC = [[PMFeedVC alloc] init];
-    UINavigationController *navController0 = [[UINavigationController alloc] initWithRootViewController:feedVC];
-    FAKIonIcons *feedIcon = [FAKIonIcons chatbubbleWorkingIconWithSize:28];
-    [feedIcon addAttribute:NSForegroundColorAttributeName value:[UIColor lightGrayColor]];
-    UIImage *deFeedImage = [[feedIcon imageWithSize:CGSizeMake(28, 28)] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    UIImage *feedImage = [feedIcon imageWithSize:CGSizeMake(28, 28)];
-    UITabBarItem *item0 = [[UITabBarItem alloc] initWithTitle:nil image:deFeedImage tag:1];
-    feedVC.tabBarItem = item0;
-    feedVC.tabBarItem.selectedImage = feedImage;
-    feedVC.tabBarItem.imageInsets= UIEdgeInsetsMake(5, 0, -5, 0);
-    
-    PMPhotoVC *photoVC = [[PMPhotoVC alloc] init];
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:photoVC];
-    FAKIonIcons *photoIcon = [FAKIonIcons imagesIconWithSize:28];
-    [photoIcon addAttribute:NSForegroundColorAttributeName value:[UIColor lightGrayColor]];
-    UIImage *dePhotoImage = [[photoIcon imageWithSize:CGSizeMake(28, 28)] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    UIImage *photoImage = [photoIcon imageWithSize:CGSizeMake(28, 28)];
-    UITabBarItem *item1 = [[UITabBarItem alloc] initWithTitle:nil image:dePhotoImage tag:1];
-    photoVC.tabBarItem = item1;
-    photoVC.tabBarItem.selectedImage = photoImage;
-    photoVC.tabBarItem.imageInsets= UIEdgeInsetsMake(5, 0, -5, 0);
-
-    
-    PMVideoMainVC *videoVC = [[PMVideoMainVC alloc] init];
-    FAKIonIcons *bookIcon = [FAKIonIcons wineglassIconWithSize:28];
-    [bookIcon addAttribute:NSForegroundColorAttributeName value:[UIColor lightGrayColor]];
-    UIImage *deVideoImage = [[bookIcon imageWithSize:CGSizeMake(28, 28)] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    UIImage *videoImage = [bookIcon imageWithSize:CGSizeMake(28, 28)];
-    UITabBarItem *item2 = [[UITabBarItem alloc] initWithTitle:nil image:deVideoImage tag:2];
-    videoVC.tabBarItem = item2;
-    videoVC.tabBarItem.selectedImage = videoImage;
-    videoVC.tabBarItem.imageInsets= UIEdgeInsetsMake(5, 0, -5, 0);
-    
-    NSArray *viewController = @[navController0,navController,videoVC];
-    UITabBarController *tabView = [[UITabBarController alloc] init];
-    tabView.viewControllers = viewController;
-    tabView.tabBar.barTintColor =  [UIColor whiteColor];
-    
-    [[UITabBarItem appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor clearColor],
-        NSFontAttributeName: [UIFont fontWithName:defaultFont size:12]}
-                                             forState:UIControlStateNormal];
-    [[UITabBarItem appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor clearColor]}
-                                             forState:UIControlStateSelected];
-    [[UITabBar appearance] setTintColor:[UIColor colorWithRed:0.235 green:0.423 blue:0.353 alpha:1.000]];
-    tabView.tabBarItem.imageInsets = UIEdgeInsetsMake(5, 0, -5, 0);
-
-    self.window.rootViewController = tabView;
+    NSUserDefaults *userDefaults = USER_DEFAULTS;
+    if (![userDefaults valueForKey:kUserToken]){
+        NSString *timestamp = [NSString stringWithFormat:@"%f",[[NSDate date] timeIntervalSince1970] * 1000];
+        NSString *uuid = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
+        NSString *str = [[NSString stringWithFormat:@"%@,%@",timestamp,uuid] MD5];
+        [userDefaults setObject:str forKey:kUserToken];
+        [userDefaults synchronize];
+    }
+    self.window.rootViewController = [self setTabbar];
     [self.window makeKeyAndVisible];
 
+    
+#ifdef DEBUG
+    NSArray *path = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
+    NSString *folder = [path objectAtIndex:0];
+    NSLog(@"Your NSUserDefaults are stored in this folder: %@/Preferences", folder);
+#endif
     
     return YES;
 }
@@ -115,6 +83,57 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (UITabBarController *)setTabbar
+{
+    PMFeedVC *feedVC = [[PMFeedVC alloc] init];
+    UINavigationController *navController0 = [[UINavigationController alloc] initWithRootViewController:feedVC];
+    FAKIonIcons *feedIcon = [FAKIonIcons chatbubbleWorkingIconWithSize:28];
+    [feedIcon addAttribute:NSForegroundColorAttributeName value:[UIColor lightGrayColor]];
+    UIImage *deFeedImage = [[feedIcon imageWithSize:CGSizeMake(28, 28)] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIImage *feedImage = [feedIcon imageWithSize:CGSizeMake(28, 28)];
+    UITabBarItem *item0 = [[UITabBarItem alloc] initWithTitle:nil image:deFeedImage tag:1];
+    feedVC.tabBarItem = item0;
+    feedVC.tabBarItem.selectedImage = feedImage;
+    feedVC.tabBarItem.imageInsets= UIEdgeInsetsMake(5, 0, -5, 0);
+    
+    PMPhotoVC *photoVC = [[PMPhotoVC alloc] init];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:photoVC];
+    FAKIonIcons *photoIcon = [FAKIonIcons imagesIconWithSize:28];
+    [photoIcon addAttribute:NSForegroundColorAttributeName value:[UIColor lightGrayColor]];
+    UIImage *dePhotoImage = [[photoIcon imageWithSize:CGSizeMake(28, 28)] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIImage *photoImage = [photoIcon imageWithSize:CGSizeMake(28, 28)];
+    UITabBarItem *item1 = [[UITabBarItem alloc] initWithTitle:nil image:dePhotoImage tag:1];
+    photoVC.tabBarItem = item1;
+    photoVC.tabBarItem.selectedImage = photoImage;
+    photoVC.tabBarItem.imageInsets= UIEdgeInsetsMake(5, 0, -5, 0);
+    
+    
+    PMVideoMainVC *videoVC = [[PMVideoMainVC alloc] init];
+    FAKIonIcons *bookIcon = [FAKIonIcons wineglassIconWithSize:28];
+    [bookIcon addAttribute:NSForegroundColorAttributeName value:[UIColor lightGrayColor]];
+    UIImage *deVideoImage = [[bookIcon imageWithSize:CGSizeMake(28, 28)] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIImage *videoImage = [bookIcon imageWithSize:CGSizeMake(28, 28)];
+    UITabBarItem *item2 = [[UITabBarItem alloc] initWithTitle:nil image:deVideoImage tag:2];
+    videoVC.tabBarItem = item2;
+    videoVC.tabBarItem.selectedImage = videoImage;
+    videoVC.tabBarItem.imageInsets= UIEdgeInsetsMake(5, 0, -5, 0);
+    
+    NSArray *viewController = @[navController0,navController,videoVC];
+    UITabBarController *tabView = [[UITabBarController alloc] init];
+    tabView.viewControllers = viewController;
+    tabView.tabBar.barTintColor =  [UIColor whiteColor];
+    
+    [[UITabBarItem appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor clearColor],
+                                                         NSFontAttributeName: [UIFont fontWithName:defaultFont size:12]}
+                                             forState:UIControlStateNormal];
+    [[UITabBarItem appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor clearColor]}
+                                             forState:UIControlStateSelected];
+    [[UITabBar appearance] setTintColor:[UIColor colorWithRed:0.235 green:0.423 blue:0.353 alpha:1.000]];
+    tabView.tabBarItem.imageInsets = UIEdgeInsetsMake(5, 0, -5, 0);
+    
+    return tabView;
 }
 
 @end

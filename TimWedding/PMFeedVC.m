@@ -91,10 +91,13 @@
                 NSDictionary *objectDic = @{@"id":object.objectId,
                                             @"username":object[@"username"],
                                             @"description":object[@"description"],
-                                            @"uuid":imageFile.url
+                                            @"uuid":imageFile.url,
+                                            @"likeList":object[@"likeList"],
+                                            @"commentList":object[@"commentList"]
                                             };
                 [feedList addObject:objectDic];
             }
+            
             [feedTableView reloadData];
         } else {
             // Log details of the failure
@@ -110,6 +113,7 @@
         
         [activityIndicatorView stopAnimating];
     }];
+    
 }
 
 - (void)openCameraRoll

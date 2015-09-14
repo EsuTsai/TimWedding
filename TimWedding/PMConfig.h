@@ -9,6 +9,9 @@
 #ifndef TimWedding_PMConfig_h
 #define TimWedding_PMConfig_h
 
+#define USER_DEFAULTS [NSUserDefaults standardUserDefaults];
 #define SCREEN_BOUNDS ([[UIScreen mainScreen] bounds])
 static  NSString * const defaultFont = @"MalayalamSangamMN";
+#define kUserToken @"UserToken"
+
 #endif
