@@ -9,6 +9,7 @@
 
 #import "PMVideoMainVC.h"
 #import <MediaPlayer/MediaPlayer.h>
+#import <MediaPlayer/MPVolumeView.h>
 #import <pop/POP.h>
 
 @interface PMVideoMainVC ()
@@ -37,6 +38,9 @@
     self.player.view.center = CGPointMake([[UIScreen mainScreen] bounds].size.width/2, ([[UIScreen mainScreen] bounds].size.height-49)/2);
     [self.view addSubview:self.player.view];
 //    [self.player prepareToPlay];
+    MPVolumeView *volumeView = [[MPVolumeView alloc] init];
+
+    
     [self.player play];
     
     

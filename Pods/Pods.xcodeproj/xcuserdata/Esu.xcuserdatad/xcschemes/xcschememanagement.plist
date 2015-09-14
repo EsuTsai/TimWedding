@@ -19,6 +19,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-DGActivityIndicatorView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-FontAwesomeKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -47,42 +52,47 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>6A060A3CA3A54976B8C83B3D</key>
+		<key>323149454977473ABA4FC47F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6E43D3E7207740CDB65DEC61</key>
+		<key>574F36AFB8DB42148D0C82D0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>82CCB080E6D8426AA4A935DE</key>
+		<key>634929A982FB4F7AA5EA1DDC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9C463E0101F647D8A2D8F56A</key>
+		<key>6BB0DC04F6F54DDE8BC525B4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>AC16DBE23C994C7BAE9169E4</key>
+		<key>6BFD3873BFAF4815999F2439</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C6BDCAD05481451EB8DA807A</key>
+		<key>8DCC6F5792B249278ACB1745</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E283096F29744CDCB059F788</key>
+		<key>9D6853CB60C144EB8DA1B456</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>FB70BA97D13B4FC79B433527</key>
+		<key>A18729D8597A47138DD2D92E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>AB2558C241A642889DA7A71C</key>
 		<dict>
 			<key>primary</key>
 			<true/>

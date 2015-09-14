@@ -10,11 +10,15 @@
 #import "PMFeedCell.h"
 #import "PMSelectPhotoVC.h"
 #import <Parse/Parse.h>
+#import <FontAwesomeKit/FontAwesomeKit.h>
+#import <DGActivityIndicatorView.h>
 
 @interface PMFeedVC () <UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 {
     UITableView *feedTableView;
     NSMutableArray *feedList;
+    DGActivityIndicatorView *activityIndicatorView;
+    UIImageView *bottomImg;
 }
 @end
 
@@ -22,6 +26,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"動態牆";
     // Do any additional setup after loading the view.
     feedList = [[NSMutableArray alloc] init];
     
@@ -35,10 +40,37 @@
     
     UIButton *photoBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_BOUNDS.size.width - 20 - 50, SCREEN_BOUNDS.size.height-64-49-20-50, 50, 50)];
     photoBtn.layer.cornerRadius = 25;
-    photoBtn.backgroundColor = [UIColor redColor];
+    photoBtn.backgroundColor = [UIColor colorWithRed:1.000 green:0.322 blue:0.325 alpha:1.000];
     [photoBtn addTarget:self action:@selector(openCameraRoll) forControlEvents:UIControlEventTouchUpInside];
+
+    FAKIonIcons *cameraIcon = [FAKIonIcons ios7CameraOutlineIconWithSize:34];
+    [cameraIcon addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor]];
+    UIImage *cameraImage = [cameraIcon imageWithSize:CGSizeMake(34, 34)];
+    [photoBtn setImage:cameraImage forState:UIControlStateNormal];
     [self.view addSubview:photoBtn];
+
+    bottomImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_BOUNDS.size.width, SCREEN_BOUNDS.size.height-64-49)];
+    [bottomImg setImage:[UIImage imageNamed:@"jc-4501.jpg"]];
+    bottomImg.contentMode = UIViewContentModeScaleAspectFill;
+    bottomImg.clipsToBounds = YES;
+    UIVisualEffect *blurEffect;
+    blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
+    
+    UIVisualEffectView *visualEffectView;
+    visualEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+    
+    visualEffectView.frame = bottomImg.bounds;
+    [bottomImg addSubview:visualEffectView];
+    [self.view addSubview:bottomImg];
+    
+    activityIndicatorView = [[DGActivityIndicatorView alloc] initWithType:DGActivityIndicatorAnimationTypeDoubleBounce tintColor:[UIColor colorWithRed:78.0/255.0 green:139.0/255.0 blue:115.0/255.0 alpha:1.000] size:30.0f];
+    activityIndicatorView.frame = CGRectMake(0.0f, 0.0f, 50.0f, 50.0f);
+    activityIndicatorView.center = CGPointMake(SCREEN_BOUNDS.size.width/2, (SCREEN_BOUNDS.size.height-64-49)/2);
+    [self.view addSubview:activityIndicatorView];
+    [activityIndicatorView startAnimating];
+    
     [self getData];
+    
     
 }
 
@@ -68,6 +100,15 @@
             // Log details of the failure
             NSLog(@"Error: %@ %@", error, [error userInfo]);
         }
+        [UIView animateWithDuration:0.4f animations:^{
+            bottomImg.alpha = 0.0;
+            
+        } completion:^(BOOL finished) {
+            bottomImg.hidden = YES;
+            
+        }];
+        
+        [activityIndicatorView stopAnimating];
     }];
 }
 

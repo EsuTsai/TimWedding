@@ -23,13 +23,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:0.133 green:0.133 blue:0.133 alpha:1.000]];
+    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:78.0/255.0 green:139.0/255.0 blue:115.0/255.0 alpha:1.000]];
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     UINavigationController *navigationController = nil;
     navigationController = [[UINavigationController alloc] initWithRootViewController:[self rootViewController]];
-    
+    navigationController.navigationBar.translucent = NO;    
     
     [Parse setApplicationId:@"rqRfR8SaRL64yqhFO4LAUSZn4yVum5w7TS5uJKCC"
                   clientKey:@"lJocu95bQQhJaFm3MiQEDnRZMrPUgAXqKCrFcYd6"];
@@ -38,41 +38,49 @@
     PMFeedVC *feedVC = [[PMFeedVC alloc] init];
     UINavigationController *navController0 = [[UINavigationController alloc] initWithRootViewController:feedVC];
     FAKIonIcons *feedIcon = [FAKIonIcons chatbubbleWorkingIconWithSize:28];
-    [feedIcon addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor]];
+    [feedIcon addAttribute:NSForegroundColorAttributeName value:[UIColor lightGrayColor]];
+    UIImage *deFeedImage = [[feedIcon imageWithSize:CGSizeMake(28, 28)] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     UIImage *feedImage = [feedIcon imageWithSize:CGSizeMake(28, 28)];
-    UITabBarItem *item0 = [[UITabBarItem alloc] initWithTitle:nil image:feedImage tag:1];
+    UITabBarItem *item0 = [[UITabBarItem alloc] initWithTitle:nil image:deFeedImage tag:1];
     feedVC.tabBarItem = item0;
+    feedVC.tabBarItem.selectedImage = feedImage;
     feedVC.tabBarItem.imageInsets= UIEdgeInsetsMake(5, 0, -5, 0);
     
     PMPhotoVC *photoVC = [[PMPhotoVC alloc] init];
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:photoVC];
     FAKIonIcons *photoIcon = [FAKIonIcons imagesIconWithSize:28];
-    [photoIcon addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor]];
+    [photoIcon addAttribute:NSForegroundColorAttributeName value:[UIColor lightGrayColor]];
+    UIImage *dePhotoImage = [[photoIcon imageWithSize:CGSizeMake(28, 28)] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     UIImage *photoImage = [photoIcon imageWithSize:CGSizeMake(28, 28)];
-    UITabBarItem *item1 = [[UITabBarItem alloc] initWithTitle:nil image:photoImage tag:1];
+    UITabBarItem *item1 = [[UITabBarItem alloc] initWithTitle:nil image:dePhotoImage tag:1];
     photoVC.tabBarItem = item1;
+    photoVC.tabBarItem.selectedImage = photoImage;
     photoVC.tabBarItem.imageInsets= UIEdgeInsetsMake(5, 0, -5, 0);
 
     
     PMVideoMainVC *videoVC = [[PMVideoMainVC alloc] init];
     FAKIonIcons *bookIcon = [FAKIonIcons wineglassIconWithSize:28];
-    [bookIcon addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor]];
+    [bookIcon addAttribute:NSForegroundColorAttributeName value:[UIColor lightGrayColor]];
+    UIImage *deVideoImage = [[bookIcon imageWithSize:CGSizeMake(28, 28)] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     UIImage *videoImage = [bookIcon imageWithSize:CGSizeMake(28, 28)];
-    UITabBarItem *item2 = [[UITabBarItem alloc] initWithTitle:nil image:videoImage tag:2];
+    UITabBarItem *item2 = [[UITabBarItem alloc] initWithTitle:nil image:deVideoImage tag:2];
     videoVC.tabBarItem = item2;
+    videoVC.tabBarItem.selectedImage = videoImage;
     videoVC.tabBarItem.imageInsets= UIEdgeInsetsMake(5, 0, -5, 0);
     
     NSArray *viewController = @[navController0,navController,videoVC];
     UITabBarController *tabView = [[UITabBarController alloc] init];
     tabView.viewControllers = viewController;
-    tabView.tabBar.barTintColor =  [UIColor colorWithRed:0.133 green:0.133 blue:0.133 alpha:1.000];
-    [[UITabBarItem appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor lightGrayColor],
+    tabView.tabBar.barTintColor =  [UIColor whiteColor];
+    
+    [[UITabBarItem appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor clearColor],
         NSFontAttributeName: [UIFont fontWithName:defaultFont size:12]}
                                              forState:UIControlStateNormal];
-    [[UITabBarItem appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor colorWithRed:0.925 green:0.957 blue:0.569 alpha:1.000]}
+    [[UITabBarItem appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor clearColor]}
                                              forState:UIControlStateSelected];
-    [[UITabBar appearance] setTintColor:[UIColor colorWithRed:0.925 green:0.957 blue:0.569 alpha:1.000]];
+    [[UITabBar appearance] setTintColor:[UIColor colorWithRed:0.235 green:0.423 blue:0.353 alpha:1.000]];
     tabView.tabBarItem.imageInsets = UIEdgeInsetsMake(5, 0, -5, 0);
+
     self.window.rootViewController = tabView;
     [self.window makeKeyAndVisible];
 

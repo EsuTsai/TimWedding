@@ -22,6 +22,7 @@ PODS:
     - AFNetworking/NSURLSession
   - Bolts/Tasks (1.2.2)
   - DACircularProgress (2.2.0)
+  - DGActivityIndicatorView (1.0)
   - FontAwesomeKit (2.1.8):
     - FontAwesomeKit/Core
     - FontAwesomeKit/FontAwesome
@@ -47,6 +48,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (= 2.5.3)
   - DACircularProgress (= 2.2.0)
+  - DGActivityIndicatorView
   - FontAwesomeKit (~> 2.1.0)
   - Parse
   - pop (= 1.0.7)
@@ -56,6 +58,7 @@ SPEC CHECKSUMS:
   AFNetworking: e1d86c2a96bb5d2e7408da36149806706ee122fe
   Bolts: 20a2bd788273360cb1e31530dc19b8544eef2544
   DACircularProgress: 0f92b77239d5f3c612fc66185e2998391ac8e054
+  DGActivityIndicatorView: 980091f8d8cc647a1af7804660272e64aef9e516
   FontAwesomeKit: 64759fb28b5d2e74a1bd81553d7c11ca10e32179
   Parse: 4b251ac63b76d12b334a32579cc3b174446f0c39
   pop: 628ffc631644601567ee8bfaaaea493ebd7d0923

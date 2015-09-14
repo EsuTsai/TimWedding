@@ -60,6 +60,12 @@
 #define COCOAPODS_VERSION_MINOR_DACircularProgress 2
 #define COCOAPODS_VERSION_PATCH_DACircularProgress 0
 
+// DGActivityIndicatorView
+#define COCOAPODS_POD_AVAILABLE_DGActivityIndicatorView
+#define COCOAPODS_VERSION_MAJOR_DGActivityIndicatorView 1
+#define COCOAPODS_VERSION_MINOR_DGActivityIndicatorView 0
+#define COCOAPODS_VERSION_PATCH_DGActivityIndicatorView 0
+
 // FontAwesomeKit
 #define COCOAPODS_POD_AVAILABLE_FontAwesomeKit
 #define COCOAPODS_VERSION_MAJOR_FontAwesomeKit 2
