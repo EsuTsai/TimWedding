@@ -32,6 +32,7 @@
 		160CD1251B9EB5C60030BCBD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 160CD1231B9EB5C60030BCBD /* LaunchScreen.xib */; };
 		160CD1311B9EB5C60030BCBD /* TimWeddingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 160CD1301B9EB5C60030BCBD /* TimWeddingTests.m */; };
 		160CD13F1B9EB6D40030BCBD /* PMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 160CD13E1B9EB6D40030BCBD /* PMViewController.m */; };
+		16A789291BA87DB600F21AC0 /* PMMessageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A789281BA87DB600F21AC0 /* PMMessageVC.m */; };
 		16C3AB661BA54DB8001D26C9 /* PMFeedVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 16C3AB651BA54DB8001D26C9 /* PMFeedVC.m */; };
 		16C3AB6D1BA5506F001D26C9 /* PMFeedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 16C3AB6B1BA5506F001D26C9 /* PMFeedCell.m */; };
 		16C3AB6E1BA5506F001D26C9 /* PMFeedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16C3AB6C1BA5506F001D26C9 /* PMFeedCell.xib */; };
@@ -117,6 +118,8 @@
 		160CD1301B9EB5C60030BCBD /* TimWeddingTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimWeddingTests.m; sourceTree = "<group>"; };
 		160CD13D1B9EB6D40030BCBD /* PMViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMViewController.h; sourceTree = "<group>"; };
 		160CD13E1B9EB6D40030BCBD /* PMViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMViewController.m; sourceTree = "<group>"; };
+		16A789271BA87DB600F21AC0 /* PMMessageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMMessageVC.h; sourceTree = "<group>"; };
+		16A789281BA87DB600F21AC0 /* PMMessageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMMessageVC.m; sourceTree = "<group>"; };
 		16C3AB641BA54DB8001D26C9 /* PMFeedVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMFeedVC.h; sourceTree = "<group>"; };
 		16C3AB651BA54DB8001D26C9 /* PMFeedVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMFeedVC.m; sourceTree = "<group>"; };
 		16C3AB6A1BA5506F001D26C9 /* PMFeedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMFeedCell.h; sourceTree = "<group>"; };
@@ -292,6 +295,8 @@
 				16C3AB6C1BA5506F001D26C9 /* PMFeedCell.xib */,
 				16C3AB6F1BA5570B001D26C9 /* PMSelectPhotoVC.h */,
 				16C3AB701BA5570B001D26C9 /* PMSelectPhotoVC.m */,
+				16A789271BA87DB600F21AC0 /* PMMessageVC.h */,
+				16A789281BA87DB600F21AC0 /* PMMessageVC.m */,
 				160CD11E1B9EB5C50030BCBD /* Main.storyboard */,
 				16091B681BA1D37F00F6274A /* PMConfig.h */,
 				16091B6A1BA1D47900F6274A /* TimWedding.pch */,
@@ -514,6 +519,7 @@
 				160CD1171B9EB5C50030BCBD /* main.m in Sources */,
 				1605A84E1B9F0F5C0089707F /* PMRootVC.m in Sources */,
 				16DE494F1BA72CE50085D87B /* NSString+Hash.m in Sources */,
+				16A789291BA87DB600F21AC0 /* PMMessageVC.m in Sources */,
 				16091B801BA1EB9600F6274A /* IDMCaptionView.m in Sources */,
 				16091B821BA1EB9600F6274A /* IDMPhoto.m in Sources */,
 				160CD13F1B9EB6D40030BCBD /* PMViewController.m in Sources */,

@@ -12,6 +12,7 @@
 #import <Parse/Parse.h>
 #import <FontAwesomeKit/FontAwesomeKit.h>
 #import <DGActivityIndicatorView.h>
+#import "PMMessageVC.h"
 
 @interface PMFeedVC () <UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 {
@@ -171,7 +172,8 @@
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //code
+    PMMessageVC *messageVC = [[PMMessageVC alloc] initWithFeed:[[feedList objectAtIndex:indexPath.row] objectForKey:@"id"]];
+    [self.navigationController pushViewController:messageVC animated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
