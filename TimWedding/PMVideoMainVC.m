@@ -28,36 +28,29 @@
     
     NSString *path = [[NSBundle mainBundle] pathForResource:@"video" ofType:@"mp4"];
     NSURL *url = [NSURL fileURLWithPath:path];
-    
-    self.player = [[MPMoviePlayerController alloc] initWithContentURL:url];
-    self.player.scalingMode = MPMovieScalingModeAspectFill;
-    self.player.repeatMode = MPMovieRepeatModeOne;
+
+    self.player              = [[MPMoviePlayerController alloc] initWithContentURL:url];
+    self.player.scalingMode  = MPMovieScalingModeAspectFill;
+    self.player.repeatMode   = MPMovieRepeatModeOne;
     self.player.controlStyle = MPMovieControlStyleNone;
-    //    player.view.frame = self.view.bounds;
-    self.player.view.frame = CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height-49);
-    self.player.view.center = CGPointMake([[UIScreen mainScreen] bounds].size.width/2, ([[UIScreen mainScreen] bounds].size.height-49)/2);
+    self.player.view.frame   = CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height-49);
+    self.player.view.center  = CGPointMake([[UIScreen mainScreen] bounds].size.width/2, ([[UIScreen mainScreen] bounds].size.height-49)/2);
     [self.view addSubview:self.player.view];
 //    [self.player prepareToPlay];
-    MPVolumeView *volumeView = [[MPVolumeView alloc] init];
-
-    
     [self.player play];
     
     
-    UIView *layerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_BOUNDS.size.width, SCREEN_BOUNDS.size.height)];
-        layerView.backgroundColor = [UIColor colorWithWhite:0.153 alpha:1.000];
-        layerView.alpha = 0.6;
-    
-//        layerView.backgroundColor = [UIColor whiteColor];
-//        layerView.alpha = 0.3;
-    
+    UIView *layerView         = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_BOUNDS.size.width, SCREEN_BOUNDS.size.height)];
+    layerView.backgroundColor = [UIColor colorWithWhite:0.153 alpha:1.000];
+    layerView.alpha           = 0.6;
+//  layerView.backgroundColor = [UIColor whiteColor];
+//  layerView.alpha = 0.3;
     [self.view addSubview:layerView];
     
-    backgroundView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_BOUNDS.size.width, SCREEN_BOUNDS.size.height)];
-    backgroundView.scrollEnabled = YES;
-    backgroundView.contentSize=CGSizeMake(SCREEN_BOUNDS.size.width, 1150);
+    backgroundView                              = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_BOUNDS.size.width, SCREEN_BOUNDS.size.height)];
+    backgroundView.scrollEnabled                = YES;
+    backgroundView.contentSize                  = CGSizeMake(SCREEN_BOUNDS.size.width, 1150);
     backgroundView.showsVerticalScrollIndicator = NO;
-    
     [self.view addSubview:backgroundView];
     //    UIVisualEffect *blurEffect;
     //    blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
@@ -68,11 +61,11 @@
     //    visualEffectView.frame = self.player.view.bounds;
     //    [self.player.view addSubview:visualEffectView];
     
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 50, SCREEN_BOUNDS.size.width, 40)];
-    titleLabel.text = @"POM & MIKI";
+    UILabel *titleLabel      = [[UILabel alloc] initWithFrame:CGRectMake(0, 50, SCREEN_BOUNDS.size.width, 40)];
+    titleLabel.text          = @"POM & MIKI";
     titleLabel.textAlignment = NSTextAlignmentCenter;
-    titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:40.];
-    titleLabel.textColor = [UIColor whiteColor];
+    titleLabel.font          = [UIFont fontWithName:@"HelveticaNeue-Light" size:40.];
+    titleLabel.textColor     = [UIColor whiteColor];
     [backgroundView addSubview:titleLabel];
     
     [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(startTimeline) userInfo:nil repeats:NO];
@@ -108,7 +101,6 @@
     UIImageView *circleView1;
     
     if(lastView == nil){
-        
         circleView1 = [self circleView:CGRectMake(40,120,60,60) upperView:nil imageCount:i];
     }else{
         i = count;
@@ -134,8 +126,8 @@
     
     
     POPSpringAnimation *scaleAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerScaleXY];
-    scaleAnimation.toValue = [NSValue valueWithCGSize:CGSizeMake(1.0, 1.0)];
-    scaleAnimation.springBounciness = 15.f;
+    scaleAnimation.toValue             = [NSValue valueWithCGSize:CGSizeMake(1.0, 1.0)];
+    scaleAnimation.springBounciness    = 15.f;
     [circleView1.layer pop_addAnimation:scaleAnimation forKey:@"scaleAnim"];
     scaleAnimation.completionBlock = ^(POPAnimation *anim, BOOL finished) {
         [UIView animateWithDuration:0.4f animations:^{
@@ -166,22 +158,22 @@
     }
     
     [circleView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%d.jpg",count]]];
-    circleView.contentMode = UIViewContentModeScaleAspectFill;
-    circleView.clipsToBounds = YES;
+    circleView.contentMode        = UIViewContentModeScaleAspectFill;
+    circleView.clipsToBounds      = YES;
 //    circleView.alpha = 0.5;
     circleView.layer.cornerRadius = 30;
-    circleView.backgroundColor = [UIColor colorWithRed:0.945 green:0.510 blue:0.000 alpha:1.000];
+    circleView.backgroundColor    = [UIColor colorWithRed:0.945 green:0.510 blue:0.000 alpha:1.000];
     
     return circleView;
 }
 
 - (UIView *)squareWithUpperView:(UIImageView *)upperView
 {
-    UIView *squareView = [[UIView alloc] initWithFrame:CGRectMake(upperView.center.y - 2.5, upperView.frame.origin.y + upperView.frame.size.height-10, 1, 0)];
-    squareView.center = CGPointMake(upperView.center.x, squareView.center.y+9);
+    UIView *squareView         = [[UIView alloc] initWithFrame:CGRectMake(upperView.center.y - 2.5, upperView.frame.origin.y + upperView.frame.size.height-10, 1, 0)];
+    squareView.center          = CGPointMake(upperView.center.x, squareView.center.y+9);
 //    squareView.backgroundColor = [UIColor colorWithRed:0.945 green:0.510 blue:0.000 alpha:1.000];
     squareView.backgroundColor = [UIColor lightGrayColor];
-    squareView.alpha = 0.5;
+    squareView.alpha           = 0.5;
     return squareView;
 }
 
@@ -209,20 +201,20 @@
     
     UIView *infoView = [[UIView alloc] initWithFrame:CGRectMake(leftView.frame.origin.x + leftView.frame.size.width + 20, leftView.frame.origin.y, SCREEN_BOUNDS.size.width - leftView.frame.origin.x - leftView.frame.size.width - 20-10, leftView.frame.size.height + 50)];
         
-    UILabel *yearLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, infoView.frame.size.width, 25)];
-    yearLabel.text = [NSString stringWithFormat:@"%@",[yearArray objectAtIndex:count]];
+    UILabel *yearLabel  = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, infoView.frame.size.width, 25)];
+    yearLabel.text      = [NSString stringWithFormat:@"%@",[yearArray objectAtIndex:count]];
     yearLabel.textColor = [UIColor whiteColor];
-    yearLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20.];
+    yearLabel.font      = [UIFont fontWithName:@"HelveticaNeue-Light" size:20.];
     [infoView addSubview:yearLabel];
     
-    UILabel *wordLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, yearLabel.frame.origin.y + yearLabel.frame.size.height +2, infoView.frame.size.width, 70)];
-    wordLabel.text = [NSString stringWithFormat:@"%@",[wordArray objectAtIndex:count]];
-    wordLabel.textColor = [UIColor whiteColor];
-    wordLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:14.];
-    wordLabel.numberOfLines = 0;
-    wordLabel.layer.shadowColor = [UIColor blackColor].CGColor;
-    wordLabel.layer.shadowOffset = CGSizeMake(3.0, 3.0);
-    wordLabel.layer.shadowRadius = 3.0;
+    UILabel *wordLabel            = [[UILabel alloc] initWithFrame:CGRectMake(0, yearLabel.frame.origin.y + yearLabel.frame.size.height +2, infoView.frame.size.width, 70)];
+    wordLabel.text                = [NSString stringWithFormat:@"%@",[wordArray objectAtIndex:count]];
+    wordLabel.textColor           = [UIColor whiteColor];
+    wordLabel.font                = [UIFont fontWithName:@"HelveticaNeue-Light" size:14.];
+    wordLabel.numberOfLines       = 0;
+    wordLabel.layer.shadowColor   = [UIColor blackColor].CGColor;
+    wordLabel.layer.shadowOffset  = CGSizeMake(3.0, 3.0);
+    wordLabel.layer.shadowRadius  = 3.0;
     wordLabel.layer.shadowOpacity = 1.0;
     [infoView addSubview:wordLabel];
     

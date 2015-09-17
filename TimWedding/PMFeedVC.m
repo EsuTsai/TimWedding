@@ -31,41 +31,39 @@
     // Do any additional setup after loading the view.
     feedList = [[NSMutableArray alloc] init];
     
-    feedTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_BOUNDS.size.width, SCREEN_BOUNDS.size.height-64-49)];
+    feedTableView                 = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_BOUNDS.size.width, SCREEN_BOUNDS.size.height-64-49)];
     feedTableView.backgroundColor = [UIColor whiteColor];
-    feedTableView.dataSource = self;
-    feedTableView.delegate = self;
-    feedTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    
+    feedTableView.dataSource      = self;
+    feedTableView.delegate        = self;
+    feedTableView.separatorStyle  = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:feedTableView];
     
-    UIButton *photoBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_BOUNDS.size.width - 20 - 50, SCREEN_BOUNDS.size.height-64-49-20-50, 50, 50)];
+    UIButton *photoBtn          = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_BOUNDS.size.width - 20 - 50, SCREEN_BOUNDS.size.height-64-49-20-50, 50, 50)];
     photoBtn.layer.cornerRadius = 25;
-    photoBtn.backgroundColor = [UIColor colorWithRed:1.000 green:0.322 blue:0.325 alpha:1.000];
+    photoBtn.backgroundColor    = [UIColor colorWithRed:1.000 green:0.322 blue:0.325 alpha:1.000];
     [photoBtn addTarget:self action:@selector(openCameraRoll) forControlEvents:UIControlEventTouchUpInside];
 
     FAKIonIcons *cameraIcon = [FAKIonIcons ios7CameraOutlineIconWithSize:34];
     [cameraIcon addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor]];
-    UIImage *cameraImage = [cameraIcon imageWithSize:CGSizeMake(34, 34)];
+    UIImage *cameraImage    = [cameraIcon imageWithSize:CGSizeMake(34, 34)];
     [photoBtn setImage:cameraImage forState:UIControlStateNormal];
     [self.view addSubview:photoBtn];
 
-    bottomImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_BOUNDS.size.width, SCREEN_BOUNDS.size.height-64-49)];
+    bottomImg               = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_BOUNDS.size.width, SCREEN_BOUNDS.size.height-64-49)];
     [bottomImg setImage:[UIImage imageNamed:@"jc-4501.jpg"]];
-    bottomImg.contentMode = UIViewContentModeScaleAspectFill;
+    bottomImg.contentMode   = UIViewContentModeScaleAspectFill;
     bottomImg.clipsToBounds = YES;
+    
     UIVisualEffect *blurEffect;
-    blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
-    
+    blurEffect             = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
     UIVisualEffectView *visualEffectView;
-    visualEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
-    
+    visualEffectView       = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
     visualEffectView.frame = bottomImg.bounds;
     [bottomImg addSubview:visualEffectView];
     [self.view addSubview:bottomImg];
     
-    activityIndicatorView = [[DGActivityIndicatorView alloc] initWithType:DGActivityIndicatorAnimationTypeDoubleBounce tintColor:[UIColor colorWithRed:78.0/255.0 green:139.0/255.0 blue:115.0/255.0 alpha:1.000] size:30.0f];
-    activityIndicatorView.frame = CGRectMake(0.0f, 0.0f, 50.0f, 50.0f);
+    activityIndicatorView        = [[DGActivityIndicatorView alloc] initWithType:DGActivityIndicatorAnimationTypeDoubleBounce tintColor:[UIColor colorWithRed:78.0/255.0 green:139.0/255.0 blue:115.0/255.0 alpha:1.000] size:30.0f];
+    activityIndicatorView.frame  = CGRectMake(0.0f, 0.0f, 50.0f, 50.0f);
     activityIndicatorView.center = CGPointMake(SCREEN_BOUNDS.size.width/2, (SCREEN_BOUNDS.size.height-64-49)/2);
     [self.view addSubview:activityIndicatorView];
     [activityIndicatorView startAnimating];
@@ -84,6 +82,8 @@
 {
     PFQuery *query = [PFQuery queryWithClassName:@"PostObject"];
     [query orderByDescending:@"createdAt"];
+    [query setLimit:1000];
+    [query setSkip:0];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             for (PFObject *object in objects) {
@@ -94,7 +94,8 @@
                                             @"description":object[@"description"],
                                             @"uuid":imageFile.url,
                                             @"likeList":object[@"likeList"],
-                                            @"commentList":object[@"commentList"]
+                                            @"commentList":object[@"commentList"],
+                                            @"messagecount":object[@"messagecount"]
                                             };
                 [feedList addObject:objectDic];
             }
@@ -121,16 +122,16 @@
 {
 
     UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
-    imagePickerController.modalPresentationStyle = UIModalPresentationCurrentContext;
-    imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    imagePickerController.delegate = self;
+    imagePickerController.modalPresentationStyle   = UIModalPresentationCurrentContext;
+    imagePickerController.sourceType               = UIImagePickerControllerSourceTypePhotoLibrary;
+    imagePickerController.delegate                 = self;
     [self presentViewController:imagePickerController animated:YES completion:nil];
 
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
 {
-    NSMutableDictionary * dict= [NSMutableDictionary dictionaryWithDictionary:editingInfo];
+    NSMutableDictionary * dict = [NSMutableDictionary dictionaryWithDictionary:editingInfo];
     
     [dict setObject:image forKey:@"UIImagePickerControllerEditedImage"];
     
@@ -158,9 +159,9 @@
     PMFeedCell *cell = [feedTableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
     if (cell == nil) {
-        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"PMFeedCell" owner:self options:nil];
-        cell = [nib objectAtIndex:0];
-        cell.selectionStyle=UITableViewCellSelectionStyleNone;
+        NSArray *nib        = [[NSBundle mainBundle] loadNibNamed:@"PMFeedCell" owner:self options:nil];
+        cell                = [nib objectAtIndex:0];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
     }
     

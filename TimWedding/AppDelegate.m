@@ -28,9 +28,9 @@
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    UINavigationController *navigationController = nil;
-    navigationController = [[UINavigationController alloc] initWithRootViewController:[self rootViewController]];
-    navigationController.navigationBar.translucent = NO;    
+    UINavigationController *navigationController   = nil;
+    navigationController                           = [[UINavigationController alloc] initWithRootViewController:[self rootViewController]];
+    navigationController.navigationBar.translucent = NO;
     
     [Parse setApplicationId:@"rqRfR8SaRL64yqhFO4LAUSZn4yVum5w7TS5uJKCC"
                   clientKey:@"lJocu95bQQhJaFm3MiQEDnRZMrPUgAXqKCrFcYd6"];
@@ -38,8 +38,8 @@
     NSUserDefaults *userDefaults = USER_DEFAULTS;
     if (![userDefaults valueForKey:kUserToken]){
         NSString *timestamp = [NSString stringWithFormat:@"%f",[[NSDate date] timeIntervalSince1970] * 1000];
-        NSString *uuid = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
-        NSString *str = [[NSString stringWithFormat:@"%@,%@",timestamp,uuid] MD5];
+        NSString *uuid      = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
+        NSString *str       = [[NSString stringWithFormat:@"%@,%@",timestamp,uuid] MD5];
         [userDefaults setObject:str forKey:kUserToken];
         [userDefaults synchronize];
     }
@@ -48,7 +48,7 @@
 
     
 #ifdef DEBUG
-    NSArray *path = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
+    NSArray *path    = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
     NSString *folder = [path objectAtIndex:0];
     NSLog(@"Your NSUserDefaults are stored in this folder: %@/Preferences", folder);
 #endif

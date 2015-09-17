@@ -58,6 +58,8 @@
 		16C792DF1B9F58A400E8A417 /* 8.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 16C792D71B9F58A400E8A417 /* 8.jpg */; };
 		16DE494F1BA72CE50085D87B /* NSString+Hash.m in Sources */ = {isa = PBXBuildFile; fileRef = 16DE494E1BA72CE50085D87B /* NSString+Hash.m */; };
 		16DE49521BA72EFE0085D87B /* PMUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 16DE49511BA72EFE0085D87B /* PMUtility.m */; };
+		16E244411BAAF7ED002363EE /* PMMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 16E2443F1BAAF7ED002363EE /* PMMessageCell.m */; };
+		16E244421BAAF7ED002363EE /* PMMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16E244401BAAF7ED002363EE /* PMMessageCell.xib */; };
 		3C0B20B961E44A869C309C36 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8591FB51B9254696B108EEE8 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -152,6 +154,9 @@
 		16DE494E1BA72CE50085D87B /* NSString+Hash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Hash.m"; sourceTree = "<group>"; };
 		16DE49501BA72EFE0085D87B /* PMUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMUtility.h; sourceTree = "<group>"; };
 		16DE49511BA72EFE0085D87B /* PMUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMUtility.m; sourceTree = "<group>"; };
+		16E2443E1BAAF7ED002363EE /* PMMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMMessageCell.h; sourceTree = "<group>"; };
+		16E2443F1BAAF7ED002363EE /* PMMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMMessageCell.m; sourceTree = "<group>"; };
+		16E244401BAAF7ED002363EE /* PMMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PMMessageCell.xib; sourceTree = "<group>"; };
 		8591FB51B9254696B108EEE8 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F2D7FFAB37F4057B974A3D9 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -297,6 +302,9 @@
 				16C3AB701BA5570B001D26C9 /* PMSelectPhotoVC.m */,
 				16A789271BA87DB600F21AC0 /* PMMessageVC.h */,
 				16A789281BA87DB600F21AC0 /* PMMessageVC.m */,
+				16E2443E1BAAF7ED002363EE /* PMMessageCell.h */,
+				16E2443F1BAAF7ED002363EE /* PMMessageCell.m */,
+				16E244401BAAF7ED002363EE /* PMMessageCell.xib */,
 				160CD11E1B9EB5C50030BCBD /* Main.storyboard */,
 				16091B681BA1D37F00F6274A /* PMConfig.h */,
 				16091B6A1BA1D47900F6274A /* TimWedding.pch */,
@@ -435,6 +443,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16E244421BAAF7ED002363EE /* PMMessageCell.xib in Resources */,
 				16C792DF1B9F58A400E8A417 /* 8.jpg in Resources */,
 				16C792DB1B9F58A400E8A417 /* 4.jpg in Resources */,
 				160CD1201B9EB5C50030BCBD /* Main.storyboard in Resources */,
@@ -519,6 +528,7 @@
 				160CD1171B9EB5C50030BCBD /* main.m in Sources */,
 				1605A84E1B9F0F5C0089707F /* PMRootVC.m in Sources */,
 				16DE494F1BA72CE50085D87B /* NSString+Hash.m in Sources */,
+				16E244411BAAF7ED002363EE /* PMMessageCell.m in Sources */,
 				16A789291BA87DB600F21AC0 /* PMMessageVC.m in Sources */,
 				16091B801BA1EB9600F6274A /* IDMCaptionView.m in Sources */,
 				16091B821BA1EB9600F6274A /* IDMPhoto.m in Sources */,

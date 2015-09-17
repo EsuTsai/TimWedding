@@ -14,9 +14,9 @@
 
 - (void)setContent:(NSString *)url
 {
-    UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_BOUNDS.size.width/2, SCREEN_BOUNDS.size.width/2)];
-    imgView.contentMode = UIViewContentModeScaleAspectFill;
-    imgView.clipsToBounds = YES;
+    UIImageView *imgView           = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_BOUNDS.size.width/2, SCREEN_BOUNDS.size.width/2)];
+    imgView.contentMode            = UIViewContentModeScaleAspectFill;
+    imgView.clipsToBounds          = YES;
     imgView.userInteractionEnabled = YES;
     
     [imgView sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"pic-loading.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
@@ -31,15 +31,15 @@
     self = [super initWithFrame:aRect];
     {
         //we create the UIImageView in this overwritten init so that we always have it at hand.
-        imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_BOUNDS.size.width/2, SCREEN_BOUNDS.size.width/2)];
-        imageView.contentMode = UIViewContentModeScaleAspectFill;
-        imageView.clipsToBounds = YES;
+        imageView                        = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_BOUNDS.size.width/2, SCREEN_BOUNDS.size.width/2)];
+        imageView.contentMode            = UIViewContentModeScaleAspectFill;
+        imageView.clipsToBounds          = YES;
         imageView.userInteractionEnabled = YES;
         //set specs and special wants for the imageView here.
         [self addSubview:imageView]; //the only place we want to do this addSubview: is here!
         
         //You wanted the imageView to react to touches and gestures. We can do that here too.
-        UITapGestureRecognizer * tap=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onButtonTapped:)];
+        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onButtonTapped:)];
         [tap setNumberOfTapsRequired:1];
         [self addGestureRecognizer:tap];
         

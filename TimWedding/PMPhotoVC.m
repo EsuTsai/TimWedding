@@ -33,7 +33,7 @@
     
     [photoView registerClass:[PMPhotoCell class] forCellWithReuseIdentifier:@"CustomCell"];
     photoView.dataSource = self;
-    photoView.delegate = self;
+    photoView.delegate   = self;
     
     photoList = [[NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"PhotoList" ofType:@"plist"]] objectAtIndex:0];
     
@@ -54,10 +54,10 @@
     static NSString *cellIdentifier = @"CustomCell";
     PMPhotoCell *cell = (PMPhotoCell *)[collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
     
-    cell.backgroundColor = [UIColor darkGrayColor];
+    cell.backgroundColor   = [UIColor darkGrayColor];
     NSString *picUrlString = [NSString stringWithFormat:@"%@",[[photoList objectAtIndex:indexPath.row] valueForKey:@"url"]];
-    
-    cell.imageView.tag = indexPath.row;
+
+    cell.imageView.tag     = indexPath.row;
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapImage:)];
     [cell.imageView addGestureRecognizer:tapGesture];
     [cell.imageView sd_setImageWithURL:[NSURL URLWithString:picUrlString] placeholderImage:[UIImage imageNamed:@"pic-loading.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
@@ -114,14 +114,14 @@
     
     IDMPhotoBrowser *browser;
     if(image != nil){
-        browser = [[IDMPhotoBrowser alloc] initWithPhotos:photos animatedFromView:image];
+        browser            = [[IDMPhotoBrowser alloc] initWithPhotos:photos animatedFromView:image];
         browser.scaleImage = image.image;
     }
-    browser.delegate = self;
+    browser.delegate            = self;
     browser.displayCounterLabel = YES;
     browser.displayActionButton = NO;
-    browser.displayArrowButton = NO;
-    browser.usePopAnimation = YES;
+    browser.displayArrowButton  = NO;
+    browser.usePopAnimation     = YES;
     
     [browser setInitialPageIndex:index];
     
