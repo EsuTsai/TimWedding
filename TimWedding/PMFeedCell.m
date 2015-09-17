@@ -8,8 +8,10 @@
 
 #import "PMFeedCell.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import <FontAwesomeKit/FontAwesomeKit.h>
 
 @implementation PMFeedCell
+@synthesize cellDelegate = _cellDelegate;
 
 - (void)awakeFromNib {
     // Initialization code
@@ -21,7 +23,7 @@
     // Configure the view for the selected state
 }
 
-- (void)setContent:(id)data
+- (void)setContent:(id)data index:(NSInteger)index
 {
     if (![data isKindOfClass:[NSDictionary class]]) {
         return;
@@ -49,10 +51,13 @@
 
     [self.contentView addSubview:feedImage];
     
-    UILabel *infoLabel  = [[UILabel alloc] initWithFrame:CGRectMake(10, feedImage.frame.origin.y + feedImage.frame.size.height, SCREEN_BOUNDS.size.width-20, 30)];
-    infoLabel.text      = [NSString stringWithFormat:@"0個讚 %@個留言",[data objectForKey:@"messagecount"]];
-    infoLabel.textColor = [UIColor darkGrayColor];
-    infoLabel.font      = [UIFont fontWithName:defaultFont size:13];
+    UIButton *infoLabel  = [[UIButton alloc] initWithFrame:CGRectMake(10, feedImage.frame.origin.y + feedImage.frame.size.height, SCREEN_BOUNDS.size.width-20, 30)];
+    infoLabel.tag = index;
+    [infoLabel setTitle:[NSString stringWithFormat:@"0個讚 %@個留言",[data objectForKey:@"messagecount"]] forState:UIControlStateNormal];
+    [infoLabel setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+    infoLabel.titleLabel.font      = [UIFont fontWithName:defaultFont size:13];
+    infoLabel.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    [infoLabel addTarget:self action:@selector(messagePress:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:infoLabel];
     
     UILabel *line        = [[UILabel alloc] initWithFrame:CGRectMake(10, infoLabel.frame.origin.y +infoLabel.frame.size.height, SCREEN_BOUNDS.size.width-20, 1)];
@@ -60,13 +65,39 @@
     [self.contentView addSubview:line];
     
     UILabel *buttonLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, line.frame.origin.y + line.frame.size.height, SCREEN_BOUNDS.size.width, 40)];
+    buttonLabel.userInteractionEnabled = YES;
     [self.contentView addSubview:buttonLabel];
     
-    UILabel *line2        = [[UILabel alloc] initWithFrame:CGRectMake(0, buttonLabel.frame.origin.y +buttonLabel.frame.size.height, SCREEN_BOUNDS.size.width, 4)];
-    line2.backgroundColor = [UIColor lightGrayColor];
-    [self.contentView addSubview:line2];
-
+    UIButton *likeBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, buttonLabel.frame.size.width/2, buttonLabel.frame.size.height)];
+    FAKIonIcons *likeIcon = [FAKIonIcons ios7HeartOutlineIconWithSize:30];
+    [likeIcon addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:78.0/255.0 green:139.0/255.0 blue:115.0/255.0 alpha:1.000]];
+    UIImage *likeImage    = [likeIcon imageWithSize:CGSizeMake(30, 30)];
+    [likeBtn setImage:likeImage forState:UIControlStateNormal];
+    [buttonLabel addSubview:likeBtn];
     
+    UIButton *messageBtn = [[UIButton alloc] initWithFrame:CGRectMake(buttonLabel.frame.size.width/2, 0, buttonLabel.frame.size.width/2, buttonLabel.frame.size.height)];
+    messageBtn.tag = index;
+    [messageBtn addTarget:self action:@selector(messagePress:) forControlEvents:UIControlEventTouchUpInside];
+    FAKIonIcons *messageIcon = [FAKIonIcons ios7ChatbubbleOutlineIconWithSize:30];
+    [messageIcon addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:78.0/255.0 green:139.0/255.0 blue:115.0/255.0 alpha:1.000]];
+    UIImage *messageImage    = [messageIcon imageWithSize:CGSizeMake(30, 30)];
+    [messageBtn setImage:messageImage forState:UIControlStateNormal];
+    [buttonLabel addSubview:messageBtn];
+    
+    UILabel *line2        = [[UILabel alloc] initWithFrame:CGRectMake(0, buttonLabel.frame.origin.y +buttonLabel.frame.size.height, SCREEN_BOUNDS.size.width, 4)];
+    line2.backgroundColor = [UIColor colorWithWhite:0.798 alpha:1.000];;
+    [self.contentView addSubview:line2];
+    
+}
+
+- (void)messagePress:(UIButton *)sender
+{
+    if (_cellDelegate && [_cellDelegate respondsToSelector:@selector(openMessagePage:)]){
+        
+        [_cellDelegate openMessagePage:sender.tag];
+        
+    }
+
 }
 
 @end

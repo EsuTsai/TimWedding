@@ -14,7 +14,7 @@
 #import <DGActivityIndicatorView.h>
 #import "PMMessageVC.h"
 
-@interface PMFeedVC () <UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface PMFeedVC () <UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, messageBtnDelegate>
 {
     UITableView *feedTableView;
     NSMutableArray *feedList;
@@ -161,25 +161,26 @@
     if (cell == nil) {
         NSArray *nib        = [[NSBundle mainBundle] loadNibNamed:@"PMFeedCell" owner:self options:nil];
         cell                = [nib objectAtIndex:0];
+        
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
     }
-    
-    [cell setContent:[feedList objectAtIndex:indexPath.row]];
+    cell.cellDelegate = self;
+    [cell setContent:[feedList objectAtIndex:indexPath.row] index:indexPath.row];
     
     return cell;
 }
 
 #pragma mark - UITableViewDelegate
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    PMMessageVC *messageVC = [[PMMessageVC alloc] initWithFeed:[[feedList objectAtIndex:indexPath.row] objectForKey:@"id"]];
-    [self.navigationController pushViewController:messageVC animated:YES];
-}
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return SCREEN_BOUNDS.size.width + 4;
+}
+
+- (void)openMessagePage:(NSInteger)index
+{
+    PMMessageVC *messageVC = [[PMMessageVC alloc] initWithFeed:[[feedList objectAtIndex:index] objectForKey:@"id"]];
+    [self.navigationController pushViewController:messageVC animated:YES];
 }
 
 @end

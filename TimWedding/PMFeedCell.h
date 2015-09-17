@@ -8,8 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol messageBtnDelegate <NSObject>
+
+- (void)openMessagePage:(NSInteger)index;
+
+@end
+
 @interface PMFeedCell : UITableViewCell
 
-- (void)setContent:(id)data;
-
+- (void)setContent:(id)data index:(NSInteger)index;
+@property (nonatomic, assign) id<messageBtnDelegate> cellDelegate;
 @end

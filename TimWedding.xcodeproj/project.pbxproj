@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		160272081BAB292200BEB822 /* NSString+Height.m in Sources */ = {isa = PBXBuildFile; fileRef = 160272071BAB292200BEB822 /* NSString+Height.m */; };
 		1605A84E1B9F0F5C0089707F /* PMRootVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1605A84C1B9F0F5C0089707F /* PMRootVC.m */; };
 		1605A84F1B9F0F5C0089707F /* PMRootVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1605A84D1B9F0F5C0089707F /* PMRootVC.xib */; };
 		1605A8511B9F0F9C0089707F /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1605A8501B9F0F9C0089707F /* MediaPlayer.framework */; };
@@ -74,6 +75,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		160272061BAB292200BEB822 /* NSString+Height.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Height.h"; sourceTree = "<group>"; };
+		160272071BAB292200BEB822 /* NSString+Height.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Height.m"; sourceTree = "<group>"; };
 		1605A84B1B9F0F5B0089707F /* PMRootVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMRootVC.h; sourceTree = "<group>"; };
 		1605A84C1B9F0F5C0089707F /* PMRootVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMRootVC.m; sourceTree = "<group>"; };
 		1605A84D1B9F0F5C0089707F /* PMRootVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PMRootVC.xib; sourceTree = "<group>"; };
@@ -280,6 +283,8 @@
 				160CD11C1B9EB5C50030BCBD /* ViewController.m */,
 				16DE494D1BA72CE50085D87B /* NSString+Hash.h */,
 				16DE494E1BA72CE50085D87B /* NSString+Hash.m */,
+				160272061BAB292200BEB822 /* NSString+Height.h */,
+				160272071BAB292200BEB822 /* NSString+Height.m */,
 				16DE49501BA72EFE0085D87B /* PMUtility.h */,
 				16DE49511BA72EFE0085D87B /* PMUtility.m */,
 				1605A84B1B9F0F5B0089707F /* PMRootVC.h */,
@@ -523,6 +528,7 @@
 				16091B861BA1EB9600F6274A /* IDMTapDetectingView.m in Sources */,
 				16C3AB711BA5570B001D26C9 /* PMSelectPhotoVC.m in Sources */,
 				1605A85A1B9F1DC30089707F /* PMVideoMainVC.m in Sources */,
+				160272081BAB292200BEB822 /* NSString+Height.m in Sources */,
 				16C3AB6D1BA5506F001D26C9 /* PMFeedCell.m in Sources */,
 				16091B851BA1EB9600F6274A /* IDMTapDetectingImageView.m in Sources */,
 				160CD1171B9EB5C50030BCBD /* main.m in Sources */,

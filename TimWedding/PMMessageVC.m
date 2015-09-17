@@ -10,6 +10,7 @@
 #import <Parse/Parse.h>
 #import "PMUtility.h"
 #import "PMMessageCell.h"
+#import "NSString+Height.h"
 
 @interface PMMessageVC () <UITextFieldDelegate, UITextViewDelegate, UITableViewDelegate, UITableViewDataSource>
 {
@@ -146,9 +147,10 @@
     [query whereKey:@"feedid" equalTo:feedId];
     [query setLimit:1000];
     [query setSkip:0];
-    [query orderByDescending:@"createdAt"];
+    [query orderByAscending:@"createdAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
+            messageList = [[NSMutableArray alloc] init];
             for (PFObject *object in objects) {
                 NSLog(@"%@", object.objectId);
                 NSDictionary *objectDic = @{@"id":object.objectId,
@@ -232,6 +234,18 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 80;
+    CGFloat cellHeight = [[NSString circulateLabelHeight:[[messageList objectAtIndex:indexPath.row] objectForKey:@"description"] labelWidth:SCREEN_BOUNDS.size.width-20 labelFont:[UIFont fontWithName:defaultFont size:15]] floatValue];
+    if(cellHeight + 15 + 15 + 1 > 51){
+        return cellHeight+15+15+1;
+    }else{
+        return 51;
+    }
+    
+    
+}
+
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 51.;
 }
 @end
