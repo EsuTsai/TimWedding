@@ -9,7 +9,16 @@
 #import "PMFeedCell.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <FontAwesomeKit/FontAwesomeKit.h>
+#import <Parse/Parse.h>
+#import "PMUtility.h"
 
+@interface PMFeedCell ()
+{
+    NSDictionary *dataDic;
+    UIButton *likeBtn;
+}
+
+@end
 @implementation PMFeedCell
 @synthesize cellDelegate = _cellDelegate;
 
@@ -28,9 +37,7 @@
     if (![data isKindOfClass:[NSDictionary class]]) {
         return;
     }
-    
-    NSLog(@"%@",[data objectForKey:@"username"]);
-    
+    dataDic = data;
     
     UILabel *nickName  = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, SCREEN_BOUNDS.size.width-20, 40)];
     nickName.text      = [data objectForKey:@"username"];
@@ -68,9 +75,23 @@
     buttonLabel.userInteractionEnabled = YES;
     [self.contentView addSubview:buttonLabel];
     
-    UIButton *likeBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, buttonLabel.frame.size.width/2, buttonLabel.frame.size.height)];
+    likeBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, buttonLabel.frame.size.width/2, buttonLabel.frame.size.height)];
+    [likeBtn addTarget:self action:@selector(likePress:) forControlEvents:UIControlEventTouchUpInside];
+    likeBtn.tag = 0;
+    for (id obj in [data objectForKey:@"likeList"])
+    {
+        if([obj isEqualToString:[[PMUtility sharedInstance] userToken]]){
+            likeBtn.tag = 1;
+            break;
+        }
+    }
     FAKIonIcons *likeIcon = [FAKIonIcons ios7HeartOutlineIconWithSize:30];
     [likeIcon addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:78.0/255.0 green:139.0/255.0 blue:115.0/255.0 alpha:1.000]];
+    if(likeBtn.tag == 1){
+        likeIcon = [FAKIonIcons ios7HeartIconWithSize:30];
+        [likeIcon addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:255.0/255.0 green:82.0/255.0 blue:83.0/255.0 alpha:1.000]];
+    }
+
     UIImage *likeImage    = [likeIcon imageWithSize:CGSizeMake(30, 30)];
     [likeBtn setImage:likeImage forState:UIControlStateNormal];
     [buttonLabel addSubview:likeBtn];
@@ -88,6 +109,31 @@
     line2.backgroundColor = [UIColor colorWithWhite:0.798 alpha:1.000];;
     [self.contentView addSubview:line2];
     
+}
+
+- (void)likePress:(UIButton *)sender
+{
+    NSMutableArray *likeList = [[NSMutableArray alloc] init];
+    likeList = [[dataDic objectForKey:@"likeList"] mutableCopy];
+    if(sender.tag == 1){
+        [likeList removeObject:[[PMUtility sharedInstance] userToken]];
+    }else{
+        [likeList addObject:[[PMUtility sharedInstance] userToken]];
+    }
+    
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"PostObject"];
+    [query getObjectInBackgroundWithId:[dataDic objectForKey:@"id"]
+                                 block:^(PFObject *postObject, NSError *error) {
+                                     if(sender.tag == 1){
+                                         [postObject incrementKey:@"likecount" byAmount:@-1];
+                                     }else{
+                                         [postObject incrementKey:@"likecount"];
+                                     }
+                                     
+                                     postObject[@"likeList"] = likeList;
+                                     [postObject saveInBackground];
+                                 }];
 }
 
 - (void)messagePress:(UIButton *)sender
