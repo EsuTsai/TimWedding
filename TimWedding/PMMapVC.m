@@ -11,9 +11,11 @@
 
 static CLLocationManager *locationManager;
 
-@interface PMMapVC () <CLLocationManagerDelegate>
+@interface PMMapVC () <CLLocationManagerDelegate, GMSMapViewDelegate>
 {
     GMSMapView *mapView_;
+    UIButton *mapInfoBtn;
+    UIImageView *bgImg;
 }
 @end
 
@@ -37,8 +39,8 @@ static CLLocationManager *locationManager;
         [locationManager startUpdatingLocation];
     }
         
-    self.view.backgroundColor = [UIColor whiteColor];
-    UIImageView *bgImg           = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_BOUNDS.size.width,300)];
+    self.view.backgroundColor = [UIColor blackColor];
+    bgImg           = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_BOUNDS.size.width,300)];
     bgImg.contentMode            = UIViewContentModeScaleAspectFill;
     bgImg.clipsToBounds          = YES;
     bgImg.userInteractionEnabled = YES;
@@ -51,7 +53,7 @@ static CLLocationManager *locationManager;
     [bgImg addSubview:layer];
     
     
-    UILabel *busTitle = [[UILabel alloc] initWithFrame:CGRectMake(20, 40, SCREEN_BOUNDS.size.width-40, 20)];
+    UILabel *busTitle = [[UILabel alloc] initWithFrame:CGRectMake(20, 30, SCREEN_BOUNDS.size.width-40, 20)];
     busTitle.font = [UIFont fontWithName:defaultFont size:18];
     busTitle.text = @"大眾運輸";
     busTitle.textColor = [UIColor colorWithRed:233.0/255.0 green:215.0/255.0 blue:154.0/255.0 alpha:1.000];
@@ -74,7 +76,7 @@ static CLLocationManager *locationManager;
     sutterBusTitle.textColor = [UIColor colorWithRed:233.0/255.0 green:215.0/255.0 blue:154.0/255.0 alpha:1.000];
     [bgImg addSubview:sutterBusTitle];
     
-    UILabel *sutterBusInfo = [[UILabel alloc] initWithFrame:CGRectMake(20, sutterBusTitle.frame.origin.y + sutterBusTitle.frame.size.height + 2, SCREEN_BOUNDS.size.width-40, 145)];
+    UILabel *sutterBusInfo = [[UILabel alloc] initWithFrame:CGRectMake(20, sutterBusTitle.frame.origin.y + sutterBusTitle.frame.size.height + 2, SCREEN_BOUNDS.size.width-40, 160)];
     sutterBusInfo.font = [UIFont fontWithName:defaultFont size:13];
     sutterBusInfo.text = @"1. 景安線 / 平均班距30-45分\n環球購物中心 - 中和稅捐站 - (美麗時代站) - 中和市公所站 - 捷運景安站 - (遠東世紀站)\n2. 新埔線 / 平均班距15-20分\n環球購物中心 - 正隆廣場站 - 捷運新埔站3號出口 - 捷運新埔站1號出口\n3. 板橋線 / 平均班距15-20分\n環球購物中心 - 板橋火車站西出口站 - 環球購物中心";
     sutterBusInfo.numberOfLines = 0;
@@ -85,12 +87,19 @@ static CLLocationManager *locationManager;
     sutterBusInfo.layer.shadowOpacity = 1.0;
     [bgImg addSubview:sutterBusInfo];
     
+    mapInfoBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, SCREEN_BOUNDS.size.width, 350)];
+    mapInfoBtn.backgroundColor = [UIColor blackColor];
+    mapInfoBtn.alpha = 0.0;
+    [mapInfoBtn addTarget:self action:@selector(openTrafficWay:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:mapInfoBtn];
+    
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:25.0065836
                                                             longitude:121.4748252
                                                                  zoom:17];
     mapView_ = [GMSMapView mapWithFrame:CGRectMake(0, 300, SCREEN_BOUNDS.size.width, SCREEN_BOUNDS.size.height - 49 -300) camera:camera];
     mapView_.myLocationEnabled = YES;
     mapView_.buildingsEnabled = NO;
+    mapView_.delegate = self;
     mapView_.settings.myLocationButton = YES;
     [self.view addSubview:mapView_];
     
@@ -109,14 +118,31 @@ static CLLocationManager *locationManager;
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
+- (void)mapView:(GMSMapView *)mapView willMove:(BOOL)gesture
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+    if(mapView.frame.origin.y >= 300){
+        [UIView animateWithDuration:.45 animations:^{
+            mapView.frame = CGRectMake(0, 100, SCREEN_BOUNDS.size.width, SCREEN_BOUNDS.size.height-49-100);
+            mapInfoBtn.alpha = 0.5;
+            bgImg.transform = CGAffineTransformMakeScale(0.9,0.9);
+        } completion:^(BOOL finished) {
+            
+        }];
+    }
+    });
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
 }
-*/
 
+- (void)openTrafficWay:(UIButton *)sender
+{
+    [UIView animateWithDuration:.45 animations:^{
+        mapView_.frame = CGRectMake(0, 300, SCREEN_BOUNDS.size.width, SCREEN_BOUNDS.size.height-49-300);
+        mapInfoBtn.alpha = 0.0;
+        bgImg.transform = CGAffineTransformMakeScale(1.0,1.0);
+
+    } completion:^(BOOL finished) {
+        
+    }];
+}
 @end

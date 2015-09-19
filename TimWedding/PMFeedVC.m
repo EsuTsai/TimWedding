@@ -31,7 +31,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"動態牆";
+    self.title = @"POM & MIKI";
     // Do any additional setup after loading the view.
     feedList = [[NSMutableArray alloc] init];
     
@@ -54,6 +54,7 @@
     UIButton *photoBtn          = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_BOUNDS.size.width - 20 - 50, SCREEN_BOUNDS.size.height-64-49-20-50, 50, 50)];
     photoBtn.layer.cornerRadius = 25;
     photoBtn.backgroundColor    = [UIColor colorWithRed:1.000 green:0.322 blue:0.325 alpha:1.000];
+//    photoBtn.backgroundColor = [UIColor colorWithRed:78.0/255.0 green:139.0/255.0 blue:115.0/255.0 alpha:1.000];
     [photoBtn addTarget:self action:@selector(openCameraRoll) forControlEvents:UIControlEventTouchUpInside];
 
     FAKIonIcons *cameraIcon = [FAKIonIcons ios7CameraOutlineIconWithSize:34];

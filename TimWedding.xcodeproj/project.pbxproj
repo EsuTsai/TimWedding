@@ -35,6 +35,7 @@
 		160CD13F1B9EB6D40030BCBD /* PMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 160CD13E1B9EB6D40030BCBD /* PMViewController.m */; };
 		16271AF61BADB12700E0A798 /* PMMapVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 16271AF51BADB12700E0A798 /* PMMapVC.m */; };
 		16271AFE1BADC82100E0A798 /* photos01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 16271AFD1BADC82100E0A798 /* photos01.jpg */; };
+		16271AFF1BADD35B00E0A798 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16C3AB801BA595AE001D26C9 /* StoreKit.framework */; };
 		16A789291BA87DB600F21AC0 /* PMMessageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A789281BA87DB600F21AC0 /* PMMessageVC.m */; };
 		16C3AB661BA54DB8001D26C9 /* PMFeedVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 16C3AB651BA54DB8001D26C9 /* PMFeedVC.m */; };
 		16C3AB6D1BA5506F001D26C9 /* PMFeedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 16C3AB6B1BA5506F001D26C9 /* PMFeedCell.m */; };
@@ -46,7 +47,6 @@
 		16C3AB7B1BA59584001D26C9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16C3AB7A1BA59584001D26C9 /* CoreLocation.framework */; };
 		16C3AB7D1BA59594001D26C9 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16C3AB7C1BA59594001D26C9 /* QuartzCore.framework */; };
 		16C3AB7F1BA595A0001D26C9 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16C3AB7E1BA595A0001D26C9 /* Security.framework */; };
-		16C3AB811BA595AE001D26C9 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16C3AB801BA595AE001D26C9 /* StoreKit.framework */; };
 		16C3AB831BA595B8001D26C9 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16C3AB821BA595B8001D26C9 /* SystemConfiguration.framework */; };
 		16C3AB851BA595C3001D26C9 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 16C3AB841BA595C3001D26C9 /* libz.dylib */; };
 		16C3AB871BA595D6001D26C9 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 16C3AB861BA595D6001D26C9 /* libsqlite3.dylib */; };
@@ -174,10 +174,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16271AFF1BADD35B00E0A798 /* StoreKit.framework in Frameworks */,
 				16C3AB871BA595D6001D26C9 /* libsqlite3.dylib in Frameworks */,
 				16C3AB851BA595C3001D26C9 /* libz.dylib in Frameworks */,
 				16C3AB831BA595B8001D26C9 /* SystemConfiguration.framework in Frameworks */,
-				16C3AB811BA595AE001D26C9 /* StoreKit.framework in Frameworks */,
 				16C3AB7F1BA595A0001D26C9 /* Security.framework in Frameworks */,
 				16C3AB7D1BA59594001D26C9 /* QuartzCore.framework in Frameworks */,
 				16C3AB7B1BA59584001D26C9 /* CoreLocation.framework in Frameworks */,
@@ -425,6 +425,7 @@
 				TargetAttributes = {
 					160CD1101B9EB5C50030BCBD = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = M8EEZ5QN6T;
 					};
 					160CD1291B9EB5C60030BCBD = {
 						CreatedOnToolsVersion = 6.4;
@@ -678,11 +679,14 @@
 			baseConfigurationReference = 9F2D7FFAB37F4057B974A3D9 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PREFIX_HEADER = "$(SRCROOT)/TimWedding/TimWedding.pch";
 				INFOPLIST_FILE = TimWedding/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -691,11 +695,14 @@
 			baseConfigurationReference = 9F2D7FFAB37F4057B974A3D9 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PREFIX_HEADER = "$(SRCROOT)/TimWedding/TimWedding.pch";
 				INFOPLIST_FILE = TimWedding/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
