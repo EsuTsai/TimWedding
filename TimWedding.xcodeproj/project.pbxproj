@@ -33,6 +33,8 @@
 		160CD1251B9EB5C60030BCBD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 160CD1231B9EB5C60030BCBD /* LaunchScreen.xib */; };
 		160CD1311B9EB5C60030BCBD /* TimWeddingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 160CD1301B9EB5C60030BCBD /* TimWeddingTests.m */; };
 		160CD13F1B9EB6D40030BCBD /* PMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 160CD13E1B9EB6D40030BCBD /* PMViewController.m */; };
+		16271AF61BADB12700E0A798 /* PMMapVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 16271AF51BADB12700E0A798 /* PMMapVC.m */; };
+		16271AFE1BADC82100E0A798 /* photos01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 16271AFD1BADC82100E0A798 /* photos01.jpg */; };
 		16A789291BA87DB600F21AC0 /* PMMessageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A789281BA87DB600F21AC0 /* PMMessageVC.m */; };
 		16C3AB661BA54DB8001D26C9 /* PMFeedVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 16C3AB651BA54DB8001D26C9 /* PMFeedVC.m */; };
 		16C3AB6D1BA5506F001D26C9 /* PMFeedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 16C3AB6B1BA5506F001D26C9 /* PMFeedCell.m */; };
@@ -123,6 +125,9 @@
 		160CD1301B9EB5C60030BCBD /* TimWeddingTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimWeddingTests.m; sourceTree = "<group>"; };
 		160CD13D1B9EB6D40030BCBD /* PMViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMViewController.h; sourceTree = "<group>"; };
 		160CD13E1B9EB6D40030BCBD /* PMViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMViewController.m; sourceTree = "<group>"; };
+		16271AF41BADB12700E0A798 /* PMMapVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMMapVC.h; sourceTree = "<group>"; };
+		16271AF51BADB12700E0A798 /* PMMapVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMMapVC.m; sourceTree = "<group>"; };
+		16271AFD1BADC82100E0A798 /* photos01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = photos01.jpg; sourceTree = "<group>"; };
 		16A789271BA87DB600F21AC0 /* PMMessageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMMessageVC.h; sourceTree = "<group>"; };
 		16A789281BA87DB600F21AC0 /* PMMessageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMMessageVC.m; sourceTree = "<group>"; };
 		16C3AB641BA54DB8001D26C9 /* PMFeedVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMFeedVC.h; sourceTree = "<group>"; };
@@ -216,6 +221,7 @@
 				16C792D51B9F58A400E8A417 /* 6.jpg */,
 				16C792D61B9F58A400E8A417 /* 7.jpg */,
 				16C792D71B9F58A400E8A417 /* 8.jpg */,
+				16271AFD1BADC82100E0A798 /* photos01.jpg */,
 				1605A8541B9F18B90089707F /* jc-4501.jpg */,
 			);
 			path = images;
@@ -310,6 +316,8 @@
 				16E2443E1BAAF7ED002363EE /* PMMessageCell.h */,
 				16E2443F1BAAF7ED002363EE /* PMMessageCell.m */,
 				16E244401BAAF7ED002363EE /* PMMessageCell.xib */,
+				16271AF41BADB12700E0A798 /* PMMapVC.h */,
+				16271AF51BADB12700E0A798 /* PMMapVC.m */,
 				160CD11E1B9EB5C50030BCBD /* Main.storyboard */,
 				16091B681BA1D37F00F6274A /* PMConfig.h */,
 				16091B6A1BA1D47900F6274A /* TimWedding.pch */,
@@ -449,6 +457,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				16E244421BAAF7ED002363EE /* PMMessageCell.xib in Resources */,
+				16271AFE1BADC82100E0A798 /* photos01.jpg in Resources */,
 				16C792DF1B9F58A400E8A417 /* 8.jpg in Resources */,
 				16C792DB1B9F58A400E8A417 /* 4.jpg in Resources */,
 				160CD1201B9EB5C50030BCBD /* Main.storyboard in Resources */,
@@ -524,6 +533,7 @@
 				16C3AB661BA54DB8001D26C9 /* PMFeedVC.m in Sources */,
 				16091B841BA1EB9600F6274A /* IDMPhotoBrowser.m in Sources */,
 				16DE49521BA72EFE0085D87B /* PMUtility.m in Sources */,
+				16271AF61BADB12700E0A798 /* PMMapVC.m in Sources */,
 				160CD11A1B9EB5C50030BCBD /* AppDelegate.m in Sources */,
 				16091B861BA1EB9600F6274A /* IDMTapDetectingView.m in Sources */,
 				16C3AB711BA5570B001D26C9 /* PMSelectPhotoVC.m in Sources */,

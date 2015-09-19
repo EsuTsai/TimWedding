@@ -45,6 +45,8 @@ install_resource "FontAwesomeKit/FontAwesomeKit/FontAwesome.otf"
 install_resource "FontAwesomeKit/FontAwesomeKit/foundation-icons.ttf"
 install_resource "FontAwesomeKit/FontAwesomeKit/ionicons.ttf"
 install_resource "FontAwesomeKit/FontAwesomeKit/zocial-regular-webfont.ttf"
+install_resource "GoogleMaps/Frameworks/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle"
+install_resource "NSDate+TimeAgo/NSDateTimeAgo.bundle"
 install_resource "Parse/Parse/Resources/en.lproj"
 
 rsync -avr --copy-links --no-relative --exclude '*/.svn/*' --files-from="$RESOURCES_TO_COPY" / "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"

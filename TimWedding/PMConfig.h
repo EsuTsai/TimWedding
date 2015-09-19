@@ -11,8 +11,8 @@
 
 #define USER_DEFAULTS [NSUserDefaults standardUserDefaults];
 #define SCREEN_BOUNDS ([[UIScreen mainScreen] bounds])
-static  NSString * const defaultFont = @"STHeitiTC-Light";
-static  NSString * const defaultFontMedium = @"STHeitiTC-Medium";
+static  NSString * const defaultFont = @"AvenirNext-Regular";
+static  NSString * const defaultFontMedium = @"AvenirNext-DemiBold";
 #define kUserToken @"UserToken"
-
+#define kUserName @"UserName"
 #endif

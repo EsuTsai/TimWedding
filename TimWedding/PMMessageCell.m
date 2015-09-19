@@ -8,6 +8,7 @@
 
 #import "PMMessageCell.h"
 #import "NSString+Height.h"
+#import <NSDate+TimeAgo.h>
 
 @implementation PMMessageCell
 
@@ -34,6 +35,22 @@
     
     [self.contentView addSubview:userName];
     
+    
+    UILabel *timeLabel      = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_BOUNDS.size.width/2, 5, (SCREEN_BOUNDS.size.width/2)-10, 14)];
+    timeLabel.textAlignment = NSTextAlignmentRight;
+    timeLabel.textColor     = [UIColor lightGrayColor];
+    timeLabel.font          = [UIFont fontWithName:defaultFont size:13];
+    [self.contentView addSubview:timeLabel];
+    NSDateFormatter *df = [NSDateFormatter new];
+    [df setDateFormat:@"yyyy/MM/dd HH:mm:ss"];
+    df.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:0];
+    NSString *timeStr = [[NSString stringWithFormat:@"%@", [data objectForKey:@"createdat"]] substringToIndex:19];
+    
+//    df.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:[NSTimeZone localTimeZone].secondsFromGMT];
+    NSDate *date = [df dateFromString:timeStr];
+    NSString *localDateString = [date timeAgo];
+    timeLabel.text          = localDateString;
+    
     UILabel *description = [[UILabel alloc] initWithFrame:CGRectMake(10, 20, SCREEN_BOUNDS.size.width-20, 20)];
     description.numberOfLines = 0;
     description.text = [data objectForKey:@"description"];
@@ -46,7 +63,7 @@
     [self.contentView addSubview:description];
     
     UILabel *line        = [[UILabel alloc] initWithFrame:CGRectMake(10, 51, SCREEN_BOUNDS.size.width-20, 1)];
-    line.backgroundColor = [UIColor colorWithWhite:0.798 alpha:1.000];
+    line.backgroundColor = [UIColor colorWithWhite:0.849 alpha:1.000];
     if(cellHeight > 20){
         line.frame = CGRectMake(line.frame.origin.x, description.frame.origin.y + description.frame.size.height + 5, line.frame.size.width, 1);
     }

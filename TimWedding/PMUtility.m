@@ -39,4 +39,24 @@
     return token;
 }
 
+- (NSString *)userName
+{
+    NSString *token = @"";
+    NSUserDefaults *userDefaults = USER_DEFAULTS;
+    if ([userDefaults valueForKey:kUserName]){
+        token = [userDefaults valueForKey:kUserName];
+    }
+    return token;
+}
+
+- (void)updateUserName:(NSString *)userName
+{
+    NSUserDefaults *userDefaults = USER_DEFAULTS;
+    if([userDefaults valueForKey:kUserName]){
+        [userDefaults removeObjectForKey:kUserName];
+    }
+    [userDefaults setObject:userName forKey:kUserName];
+    [userDefaults synchronize];
+}
+
 @end

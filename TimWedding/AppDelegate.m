@@ -11,9 +11,11 @@
 #import "PMVideoMainVC.h"
 #import "PMPhotoVC.h"
 #import "PMFeedVC.h"
+#import "PMMapVC.h"
 #import <FontAwesomeKit/FontAwesomeKit.h>
 #import <Parse/Parse.h>
 #import "NSString+Hash.h"
+@import GoogleMaps;
 
 @interface AppDelegate ()
 
@@ -34,6 +36,7 @@
     
     [Parse setApplicationId:@"rqRfR8SaRL64yqhFO4LAUSZn4yVum5w7TS5uJKCC"
                   clientKey:@"lJocu95bQQhJaFm3MiQEDnRZMrPUgAXqKCrFcYd6"];
+    [GMSServices provideAPIKey:@"AIzaSyDFwmJSLvqdJMpeSyTBlumnvoa64V4ywGU"];
     
     NSUserDefaults *userDefaults = USER_DEFAULTS;
     if (![userDefaults valueForKey:kUserToken]){
@@ -109,9 +112,8 @@
     photoVC.tabBarItem.selectedImage = photoImage;
     photoVC.tabBarItem.imageInsets= UIEdgeInsetsMake(5, 0, -5, 0);
     
-    
     PMVideoMainVC *videoVC = [[PMVideoMainVC alloc] init];
-    FAKIonIcons *bookIcon = [FAKIonIcons wineglassIconWithSize:28];
+    FAKIonIcons *bookIcon = [FAKIonIcons videocameraIconWithSize:28];
     [bookIcon addAttribute:NSForegroundColorAttributeName value:[UIColor lightGrayColor]];
     UIImage *deVideoImage = [[bookIcon imageWithSize:CGSizeMake(28, 28)] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     UIImage *videoImage = [bookIcon imageWithSize:CGSizeMake(28, 28)];
@@ -120,7 +122,17 @@
     videoVC.tabBarItem.selectedImage = videoImage;
     videoVC.tabBarItem.imageInsets= UIEdgeInsetsMake(5, 0, -5, 0);
     
-    NSArray *viewController = @[navController0,navController,videoVC];
+    PMMapVC *mapVC = [[PMMapVC alloc] init];
+    FAKIonIcons *mapIcon = [FAKIonIcons mapIconWithSize:28];
+    [mapIcon addAttribute:NSForegroundColorAttributeName value:[UIColor lightGrayColor]];
+    UIImage *deMapImage = [[mapIcon imageWithSize:CGSizeMake(28, 28)] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIImage *mapImage = [mapIcon imageWithSize:CGSizeMake(28, 28)];
+    UITabBarItem *item3 = [[UITabBarItem alloc] initWithTitle:nil image:deMapImage tag:2];
+    mapVC.tabBarItem = item3;
+    mapVC.tabBarItem.selectedImage = mapImage;
+    mapVC.tabBarItem.imageInsets= UIEdgeInsetsMake(5, 0, -5, 0);
+    
+    NSArray *viewController = @[navController0,navController,videoVC,mapVC];
     UITabBarController *tabView = [[UITabBarController alloc] init];
     tabView.viewControllers = viewController;
     tabView.tabBar.barTintColor =  [UIColor whiteColor];

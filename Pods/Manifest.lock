@@ -38,6 +38,8 @@ PODS:
     - FontAwesomeKit/Core
   - FontAwesomeKit/Zocial (2.1.8):
     - FontAwesomeKit/Core
+  - GoogleMaps (1.10.2)
+  - NSDate+TimeAgo (1.0.3)
   - Parse (1.8.3):
     - Bolts/Tasks (>= 1.2.2)
   - pop (1.0.7)
@@ -50,6 +52,8 @@ DEPENDENCIES:
   - DACircularProgress (= 2.2.0)
   - DGActivityIndicatorView
   - FontAwesomeKit (~> 2.1.0)
+  - GoogleMaps
+  - NSDate+TimeAgo
   - Parse
   - pop (= 1.0.7)
   - SDWebImage (= 3.7.1)
@@ -60,6 +64,8 @@ SPEC CHECKSUMS:
   DACircularProgress: 0f92b77239d5f3c612fc66185e2998391ac8e054
   DGActivityIndicatorView: 980091f8d8cc647a1af7804660272e64aef9e516
   FontAwesomeKit: 64759fb28b5d2e74a1bd81553d7c11ca10e32179
+  GoogleMaps: 5c92e599b07b0a2a9b367c5dd128edc629bddfea
+  NSDate+TimeAgo: 416f55d2696d3744c313091c5a9280d47f8238fe
   Parse: 4b251ac63b76d12b334a32579cc3b174446f0c39
   pop: 628ffc631644601567ee8bfaaaea493ebd7d0923
   SDWebImage: ed3095af2ff88b436426037444979b917f6c5575

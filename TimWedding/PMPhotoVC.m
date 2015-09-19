@@ -23,7 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-//    self.title = @"婚紗";
+    self.title = @"POM & MIKI";
     // Do any additional setup after loading the view.
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
 //    layout.itemSize =CGSizeMake((SCREEN_BOUNDS.size.width), (SCREEN_BOUNDS.size.width/2));

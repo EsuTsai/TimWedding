@@ -10,6 +10,7 @@
 #import <Parse/Parse.h>
 #import "PMUtility.h"
 #import <DGActivityIndicatorView.h>
+#import <FontAwesomeKit/FontAwesomeKit.h>
 
 @interface PMSelectPhotoVC () <UITextFieldDelegate, UITextViewDelegate>
 {
@@ -42,6 +43,7 @@
     userName                 = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, SCREEN_BOUNDS.size.width, 50)];
     userName.backgroundColor = [UIColor whiteColor];
     userName.delegate        = self;
+    userName.text            = [[PMUtility sharedInstance] userName];
     userName.placeholder     = @"請輸入暱稱";
     userName.font            = [UIFont fontWithName:defaultFont size:18.];
     [[userName valueForKey:@"textInputTraits"] setValue:[UIColor colorWithRed:0.698 green:0.698 blue:0.698 alpha:1.000] forKey:@"insertionPointColor"];
@@ -51,16 +53,19 @@
     userName.leftViewMode       = UITextFieldViewModeAlways;
     [self.view addSubview:userName];
     
-    UILabel *line        = [[UILabel alloc] initWithFrame:CGRectMake(0, userName.frame.size.height, SCREEN_BOUNDS.size.width, 1)];
-    line.backgroundColor = [UIColor lightGrayColor];
+    UILabel *line        = [[UILabel alloc] initWithFrame:CGRectMake(10, userName.frame.size.height, SCREEN_BOUNDS.size.width-20, 1)];
+    line.backgroundColor =[UIColor colorWithWhite:0.849 alpha:1.000];
     [self.view addSubview:line];
     
-    feedInfo          = [[UITextView alloc] initWithFrame:CGRectMake(0, userName.frame.size.height + line.frame.size.height, SCREEN_BOUNDS.size.width, 100)];
-    feedInfo.delegate = self;
+    feedInfo           = [[UITextView alloc] initWithFrame:CGRectMake(0, userName.frame.size.height + line.frame.size.height, SCREEN_BOUNDS.size.width, 100)];
+    feedInfo.delegate  = self;
+    feedInfo.text      = @"  說點什麼吧...";
+    feedInfo.font      = [UIFont fontWithName:defaultFont size:18.];
+    feedInfo.textColor = [UIColor colorWithRed:0.698 green:0.698 blue:0.698 alpha:1.000];
     [self.view addSubview:feedInfo];
     
-    UILabel *line2        = [[UILabel alloc] initWithFrame:CGRectMake(0, feedInfo.frame.origin.y + feedInfo.frame.size.height, SCREEN_BOUNDS.size.width, 1)];
-    line2.backgroundColor = [UIColor lightGrayColor];
+    UILabel *line2        = [[UILabel alloc] initWithFrame:CGRectMake(10, feedInfo.frame.origin.y + feedInfo.frame.size.height, SCREEN_BOUNDS.size.width-20, 1)];
+    line2.backgroundColor = [UIColor colorWithWhite:0.849 alpha:1.000];
     [self.view addSubview:line2];
     
     UIImageView *postImage  = [[UIImageView alloc] initWithFrame:CGRectMake(0, feedInfo.frame.origin.y + feedInfo.frame.size.height, SCREEN_BOUNDS.size.width, SCREEN_BOUNDS.size.height - 64-49-50-100-50)];
@@ -69,8 +74,20 @@
     [postImage setImage:selectPhoto];
     [self.view addSubview:postImage];
     
+    FAKIonIcons *starIcon = [FAKIonIcons arrowRightCIconWithSize:18];
+    [starIcon addAttribute:NSForegroundColorAttributeName value:[UIColor
+                                                                 whiteColor]];
     UIButton *sendBtn       = [[UIButton alloc] initWithFrame:CGRectMake(0, SCREEN_BOUNDS.size.height - 64 - 49 -50, SCREEN_BOUNDS.size.width, 50)];
-    sendBtn.backgroundColor = [UIColor blueColor];
+    sendBtn.backgroundColor = [UIColor colorWithRed:78.0/255.0 green:139.0/255.0 blue:115.0/255.0 alpha:1.000];
+//    [sendBtn setTitle:[NSString stringWithFormat:@"分享%@",[starIcon characterCode]] forState:UIControlStateNormal];
+//    NSString *anotherString=[[starIcon characterCode] string];
+//    [sendBtn setTitle:anotherString forState:UIControlStateNormal];
+    NSDictionary *dict1 = @{NSFontAttributeName:[UIFont fontWithName:defaultFont size:18],
+                            NSForegroundColorAttributeName:[UIColor whiteColor]};
+    NSMutableAttributedString *mutableAttributedString = [[NSMutableAttributedString alloc] initWithString:@"分享 " attributes:dict1];
+    [mutableAttributedString appendAttributedString:[[NSAttributedString alloc] initWithAttributedString:[starIcon attributedString]]];
+    [sendBtn setAttributedTitle:mutableAttributedString forState:UIControlStateNormal];
+    sendBtn.titleLabel.font = [UIFont fontWithName:defaultFont size:18];
     [sendBtn addTarget:self action:@selector(sendFeed) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:sendBtn];
     
@@ -93,6 +110,20 @@
 - (void)textViewDidBeginEditing:(UITextView *)textView
 {
     userNameLayer.userInteractionEnabled = YES;
+    if ([textView.text isEqualToString:@"  說點什麼吧..."]) {
+        textView.text = @"";
+        textView.textColor = [UIColor blackColor];
+    }
+
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView
+{
+    if ([textView.text isEqualToString:@""]) {
+        textView.text = @"  說點什麼吧...";
+        textView.textColor = [UIColor colorWithRed:0.698 green:0.698 blue:0.698 alpha:1.000];
+    }
+
 }
 
 - (void)dissmissKeyboard
@@ -104,6 +135,9 @@
 - (void)sendFeed
 {
     [self setLoadingView];
+    if ([feedInfo.text isEqualToString:@"  說點什麼吧..."]) {
+        feedInfo.text = @"";
+    }
     NSData *imageData   = UIImageJPEGRepresentation(selectPhoto, 0.2);
     NSString *imageType = [self contentTypeForImageData:imageData];
    NSLog(@"File size is : %.2f MB",(float)imageData.length/1024.0f/1024.0f);
@@ -116,11 +150,15 @@
             postObject[@"description"] = feedInfo.text;
             postObject[@"uuid"] = imageFile;
             postObject[@"usertoken"] = [[PMUtility sharedInstance] userToken];
+            postObject[@"likecount"] = @0;
+            postObject[@"messagecount"] = @0;
             NSMutableArray *likeList = [[NSMutableArray alloc] init];
             NSMutableArray *commentList = [[NSMutableArray alloc] init];
             postObject[@"likeList"] = likeList;
             postObject[@"commentList"] = commentList;
             [postObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
+                [[PMUtility sharedInstance] updateUserName:userName.text];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshData" object:self];
                 [self.navigationController popViewControllerAnimated:YES];
                 
             }];

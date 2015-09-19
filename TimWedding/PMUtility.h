@@ -12,5 +12,7 @@
 
 + (instancetype)sharedInstance;
 - (NSString *)userToken;
+- (NSString *)userName;
+- (void)updateUserName:(NSString *)userName;
 
 @end

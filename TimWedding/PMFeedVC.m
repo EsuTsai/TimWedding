@@ -13,13 +13,17 @@
 #import <FontAwesomeKit/FontAwesomeKit.h>
 #import <DGActivityIndicatorView.h>
 #import "PMMessageVC.h"
+#import "PMUtility.h"
+#import "NSString+Height.h"
+#import "IDMPhotoBrowser.h"
 
-@interface PMFeedVC () <UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, messageBtnDelegate>
+@interface PMFeedVC () <UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, messageBtnDelegate, IDMPhotoBrowserDelegate>
 {
     UITableView *feedTableView;
     NSMutableArray *feedList;
     DGActivityIndicatorView *activityIndicatorView;
     UIImageView *bottomImg;
+    UIRefreshControl *refreshControl;
 }
 @end
 
@@ -36,6 +40,15 @@
     feedTableView.dataSource      = self;
     feedTableView.delegate        = self;
     feedTableView.separatorStyle  = UITableViewCellSeparatorStyleNone;
+    
+    refreshControl = [[UIRefreshControl alloc] init];
+    refreshControl.backgroundColor = [UIColor colorWithRed:0.843 green:0.843 blue:0.843 alpha:1.000];
+    refreshControl.tintColor = [UIColor lightGrayColor];
+    [refreshControl addTarget:self
+                       action:@selector(getLatestData)
+             forControlEvents:UIControlEventValueChanged];
+    
+    [feedTableView addSubview:refreshControl];
     [self.view addSubview:feedTableView];
     
     UIButton *photoBtn          = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_BOUNDS.size.width - 20 - 50, SCREEN_BOUNDS.size.height-64-49-20-50, 50, 50)];
@@ -73,6 +86,12 @@
     
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"refreshData" object:nil];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -95,7 +114,9 @@
                                             @"uuid":imageFile.url,
                                             @"likeList":object[@"likeList"],
                                             @"commentList":object[@"commentList"],
-                                            @"messagecount":object[@"messagecount"]
+                                            @"messagecount":object[@"messagecount"],
+                                            @"likecount":object[@"likecount"],
+                                            @"createdat":object.createdAt
                                             };
                 [feedList addObject:objectDic];
             }
@@ -112,10 +133,26 @@
             bottomImg.hidden = YES;
             
         }];
+        if (refreshControl) {
+            [refreshControl endRefreshing];
+        }
         
         [activityIndicatorView stopAnimating];
     }];
     
+}
+
+- (void)getLatestData
+{
+    feedList = [[NSMutableArray alloc] init];
+    [self getData];
+}
+
+- (void)refreshData
+{
+    [activityIndicatorView startAnimating];
+    feedList = [[NSMutableArray alloc] init];
+    [self getData];
 }
 
 - (void)openCameraRoll
@@ -131,6 +168,7 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
 {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshData) name:@"refreshData" object:nil];
     NSMutableDictionary * dict = [NSMutableDictionary dictionaryWithDictionary:editingInfo];
     
     [dict setObject:image forKey:@"UIImagePickerControllerEditedImage"];
@@ -174,13 +212,58 @@
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return SCREEN_BOUNDS.size.width + 4;
+    CGFloat cellHeight = [[NSString circulateLabelHeight:[[feedList objectAtIndex:indexPath.row] objectForKey:@"description"] labelWidth:SCREEN_BOUNDS.size.width-20 labelFont:[UIFont fontWithName:defaultFont size:14]] floatValue];
+    
+    if(cellHeight > 0){
+        return 5+35+5+cellHeight+5+SCREEN_BOUNDS.size.width + 5+30+5+1+5+40+5+4;
+
+    }else{
+        return 5+35+5+SCREEN_BOUNDS.size.width + 5+30+5+1+5+40+5+4;
+
+    }
 }
 
 - (void)openMessagePage:(NSInteger)index
 {
-    PMMessageVC *messageVC = [[PMMessageVC alloc] initWithFeed:[[feedList objectAtIndex:index] objectForKey:@"id"]];
-    [self.navigationController pushViewController:messageVC animated:YES];
+    if([feedList count] > 0){
+        PMMessageVC *messageVC = [[PMMessageVC alloc] initWithFeed:[[feedList objectAtIndex:index] objectForKey:@"id"]];
+        [self.navigationController pushViewController:messageVC animated:YES];
+
+    }
 }
 
+- (void)updateLikeData:(NSMutableArray *)likeList index:(NSInteger)index status:(NSInteger)status
+{
+    NSMutableDictionary *feedDict = [[feedList objectAtIndex:index] mutableCopy];
+    NSMutableArray *likeArray = [[feedDict objectForKey:@"likeList"] mutableCopy];
+    [likeArray addObject:[[PMUtility sharedInstance] userToken]];
+    [feedDict removeObjectForKey:@"likeList"];
+    [feedDict setValue:likeArray forKey:@"likeList"];
+    NSInteger preLikeCount = [[feedDict objectForKey:@"likecount"] integerValue];
+    [feedDict removeObjectForKey:@"likecount"];
+    [feedDict setValue:[NSString stringWithFormat:@"%ld",preLikeCount+1] forKey:@"likecount"];
+    [feedList replaceObjectAtIndex:index withObject:feedDict];
+    [feedTableView reloadData];
+}
+
+- (void)openImageWithTag:(NSInteger)tag view:(UIImageView *)sender
+{
+    IDMPhoto *photo;
+    NSString *picUrlString = [NSString stringWithFormat:@"%@",[[feedList objectAtIndex:tag] objectForKey:@"uuid"]];
+    NSMutableArray *photos = [NSMutableArray new];
+    photo = [IDMPhoto photoWithURL:[NSURL URLWithString:picUrlString]];
+    [photos addObject:photo];
+
+    IDMPhotoBrowser *browser;
+    browser = [[IDMPhotoBrowser alloc] initWithPhotos:photos animatedFromView:sender];
+    browser.scaleImage = sender.image;
+    browser.delegate = self;
+    browser.displayCounterLabel = NO;
+    browser.displayActionButton = NO;
+    browser.displayArrowButton = NO;
+    browser.usePopAnimation = YES;
+    
+    [self presentViewController:browser animated:NO completion:nil];
+
+}
 @end
