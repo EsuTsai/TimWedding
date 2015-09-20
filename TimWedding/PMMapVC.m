@@ -16,6 +16,7 @@ static CLLocationManager *locationManager;
     GMSMapView *mapView_;
     UIButton *mapInfoBtn;
     UIImageView *bgImg;
+    UIButton *trafficBtn;
 }
 @end
 
@@ -72,7 +73,7 @@ static CLLocationManager *locationManager;
     
     UILabel *sutterBusTitle = [[UILabel alloc] initWithFrame:CGRectMake(20, busInfo.frame.origin.y + busInfo.frame.size.height+10, SCREEN_BOUNDS.size.width-40, 20)];
     sutterBusTitle.font = [UIFont fontWithName:defaultFont size:18];
-    sutterBusTitle.text = @"接駁專車";
+    sutterBusTitle.text = @"環球接駁專車";
     sutterBusTitle.textColor = [UIColor colorWithRed:233.0/255.0 green:215.0/255.0 blue:154.0/255.0 alpha:1.000];
     [bgImg addSubview:sutterBusTitle];
     
@@ -90,8 +91,21 @@ static CLLocationManager *locationManager;
     mapInfoBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, SCREEN_BOUNDS.size.width, 350)];
     mapInfoBtn.backgroundColor = [UIColor blackColor];
     mapInfoBtn.alpha = 0.0;
-    [mapInfoBtn addTarget:self action:@selector(openTrafficWay:) forControlEvents:UIControlEventTouchUpInside];
+//    [mapInfoBtn addTarget:self action:@selector(openTrafficWay:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:mapInfoBtn];
+    
+    trafficBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 90, 40)];
+    trafficBtn.center = CGPointMake(SCREEN_BOUNDS.size.width/2, 50+10);
+    trafficBtn.backgroundColor = [UIColor clearColor];
+    trafficBtn.alpha = 0.0;
+    [trafficBtn setTitle:@"交通方式" forState:UIControlStateNormal];
+    [trafficBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    trafficBtn.titleLabel.font = [UIFont fontWithName:defaultFont size:16];
+    trafficBtn.layer.cornerRadius = 20;
+    trafficBtn.layer.borderColor = [UIColor whiteColor].CGColor;
+    trafficBtn.layer.borderWidth = 1;
+    [trafficBtn addTarget:self action:@selector(openTrafficWay:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:trafficBtn];
     
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:25.0065836
                                                             longitude:121.4748252
@@ -125,7 +139,8 @@ static CLLocationManager *locationManager;
         [UIView animateWithDuration:.45 animations:^{
             mapView.frame = CGRectMake(0, 100, SCREEN_BOUNDS.size.width, SCREEN_BOUNDS.size.height-49-100);
             mapInfoBtn.alpha = 0.5;
-            bgImg.transform = CGAffineTransformMakeScale(0.9,0.9);
+            trafficBtn.alpha = 1.0;
+            bgImg.transform = CGAffineTransformMakeScale(0.8,0.8);
         } completion:^(BOOL finished) {
             
         }];
@@ -139,6 +154,7 @@ static CLLocationManager *locationManager;
     [UIView animateWithDuration:.45 animations:^{
         mapView_.frame = CGRectMake(0, 300, SCREEN_BOUNDS.size.width, SCREEN_BOUNDS.size.height-49-300);
         mapInfoBtn.alpha = 0.0;
+        trafficBtn.alpha = 0.0;
         bgImg.transform = CGAffineTransformMakeScale(1.0,1.0);
 
     } completion:^(BOOL finished) {

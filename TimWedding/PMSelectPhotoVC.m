@@ -134,6 +134,17 @@
 
 - (void)sendFeed
 {
+    if([userName.text isEqualToString:@""]){
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
+                                                        message:@"請填入您的暱稱唷～"
+                                                       delegate:nil
+                                              cancelButtonTitle:nil
+                                              otherButtonTitles:@"確認", nil];
+        
+        [alert show];
+        return;
+    }
+
     [self setLoadingView];
     if ([feedInfo.text isEqualToString:@"  說點什麼吧..."]) {
         feedInfo.text = @"";

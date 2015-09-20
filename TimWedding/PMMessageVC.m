@@ -31,6 +31,8 @@
 @end
 
 @implementation PMMessageVC
+@synthesize messageDelegate = _messageDelegate;
+
 
 - (id)initWithFeed:(NSString *)objectId
 {
@@ -224,6 +226,10 @@
         }
         if(isSending){
             [self restView];
+            if (_messageDelegate && [_messageDelegate respondsToSelector:@selector(refreshMessageCount:)] ){
+                
+                [_messageDelegate refreshMessageCount:[messageList count]];
+            }
         }
         [activityIndicatorView stopAnimating];
     }];
@@ -257,6 +263,16 @@
 {
     if([message.text isEqualToString:@"  我要說點什麼..."]){
         message.text = @"";
+    }
+    if([message.text isEqualToString:@""] || [userName.text isEqualToString:@""]){
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
+                                                        message:@"請填入您的暱稱以及想要說的話唷～"
+                                                       delegate:nil
+                                              cancelButtonTitle:nil
+                                              otherButtonTitles:@"確認", nil];
+        
+        [alert show];
+        return;
     }
     [UIView animateWithDuration:.5 animations:^{
         sendingView.alpha = 1.0;
@@ -329,9 +345,9 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CGFloat cellHeight = [[NSString circulateLabelHeight:[[messageList objectAtIndex:indexPath.row] objectForKey:@"description"] labelWidth:SCREEN_BOUNDS.size.width-20 labelFont:[UIFont fontWithName:defaultFont size:15]] floatValue];
-    if(cellHeight + 15 + 15 + 1 > 51){
-        return cellHeight+15+15+1;
+    CGFloat cellHeight = [[NSString circulateLabelHeight:[[messageList objectAtIndex:indexPath.row] objectForKey:@"description"] labelWidth:SCREEN_BOUNDS.size.width-20 labelFont:[UIFont fontWithName:defaultFont size:16]] floatValue];
+    if(cellHeight > 0){
+        return cellHeight+30+1;
     }else{
         return 51;
     }
@@ -339,8 +355,8 @@
     
 }
 
-- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 51.;
-}
+//- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return 51.;
+//}
 @end

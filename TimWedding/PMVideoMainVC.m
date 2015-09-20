@@ -64,7 +64,7 @@
     UILabel *titleLabel      = [[UILabel alloc] initWithFrame:CGRectMake(0, 50, SCREEN_BOUNDS.size.width, 40)];
     titleLabel.text          = @"POM & MIKI";
     titleLabel.textAlignment = NSTextAlignmentCenter;
-    titleLabel.font          = [UIFont fontWithName:@"HelveticaNeue-Light" size:40.];
+    titleLabel.font          = [UIFont fontWithName:defaultFont size:40.];
     titleLabel.textColor     = [UIColor whiteColor];
     [backgroundView addSubview:titleLabel];
     
@@ -201,16 +201,16 @@
     
     UIView *infoView = [[UIView alloc] initWithFrame:CGRectMake(leftView.frame.origin.x + leftView.frame.size.width + 20, leftView.frame.origin.y, SCREEN_BOUNDS.size.width - leftView.frame.origin.x - leftView.frame.size.width - 20-10, leftView.frame.size.height + 50)];
         
-    UILabel *yearLabel  = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, infoView.frame.size.width, 25)];
+    UILabel *yearLabel  = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, infoView.frame.size.width, 22)];
     yearLabel.text      = [NSString stringWithFormat:@"%@",[yearArray objectAtIndex:count]];
     yearLabel.textColor = [UIColor whiteColor];
-    yearLabel.font      = [UIFont fontWithName:@"HelveticaNeue-Light" size:20.];
+    yearLabel.font      = [UIFont fontWithName:defaultFont size:20.];
     [infoView addSubview:yearLabel];
     
-    UILabel *wordLabel            = [[UILabel alloc] initWithFrame:CGRectMake(0, yearLabel.frame.origin.y + yearLabel.frame.size.height +2, infoView.frame.size.width, 70)];
+    UILabel *wordLabel            = [[UILabel alloc] initWithFrame:CGRectMake(0, yearLabel.frame.origin.y + yearLabel.frame.size.height +2, infoView.frame.size.width, 60)];
     wordLabel.text                = [NSString stringWithFormat:@"%@",[wordArray objectAtIndex:count]];
     wordLabel.textColor           = [UIColor whiteColor];
-    wordLabel.font                = [UIFont fontWithName:@"HelveticaNeue-Light" size:14.];
+    wordLabel.font                = [UIFont fontWithName:defaultFont size:14.];
     wordLabel.numberOfLines       = 0;
     wordLabel.layer.shadowColor   = [UIColor blackColor].CGColor;
     wordLabel.layer.shadowOffset  = CGSizeMake(3.0, 3.0);

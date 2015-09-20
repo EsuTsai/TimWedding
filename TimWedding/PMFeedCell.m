@@ -69,7 +69,7 @@
     description.text = [data objectForKey:@"description"];
     description.numberOfLines = 0;
     description.font = [UIFont fontWithName:defaultFont size:14.];
-    CGFloat cellHeight = [[NSString circulateLabelHeight:[data objectForKey:@"description"] labelWidth:SCREEN_BOUNDS.size.width-20 labelFont:[UIFont fontWithName:defaultFont size:14]] floatValue];
+    CGFloat cellHeight = [[NSString circulateLabelHeight:[data objectForKey:@"description"] labelWidth:SCREEN_BOUNDS.size.width-20 labelFont:[UIFont fontWithName:defaultFont size:15]] floatValue];
     if(cellHeight > 0){
         description.frame = CGRectMake(description.frame.origin.x+5, description.frame.origin.y, description.frame.size.width, cellHeight);
     }

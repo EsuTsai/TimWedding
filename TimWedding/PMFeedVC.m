@@ -17,13 +17,14 @@
 #import "NSString+Height.h"
 #import "IDMPhotoBrowser.h"
 
-@interface PMFeedVC () <UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, messageBtnDelegate, IDMPhotoBrowserDelegate>
+@interface PMFeedVC () <UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, messageBtnDelegate, IDMPhotoBrowserDelegate, EMMessageDelegate>
 {
     UITableView *feedTableView;
     NSMutableArray *feedList;
     DGActivityIndicatorView *activityIndicatorView;
     UIImageView *bottomImg;
     UIRefreshControl *refreshControl;
+    NSNumber *didSelectCell;
 }
 @end
 
@@ -34,7 +35,7 @@
     self.title = @"POM & MIKI";
     // Do any additional setup after loading the view.
     feedList = [[NSMutableArray alloc] init];
-    
+    didSelectCell = 0;
     feedTableView                 = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_BOUNDS.size.width, SCREEN_BOUNDS.size.height-64-49)];
     feedTableView.backgroundColor = [UIColor whiteColor];
     feedTableView.dataSource      = self;
@@ -156,6 +157,18 @@
     [self getData];
 }
 
+- (void)refreshMessageCount:(NSInteger)count
+{
+    if(didSelectCell){
+        NSMutableDictionary *feedDict = [[feedList objectAtIndex:[didSelectCell integerValue]] mutableCopy];
+        [feedDict removeObjectForKey:@"messagecount"];
+        [feedDict setObject:[NSString stringWithFormat:@"%ld",count] forKey:@"messagecount"];
+        [feedList replaceObjectAtIndex:[didSelectCell integerValue] withObject:feedDict];
+        [feedTableView reloadData];
+    }
+
+}
+
 - (void)openCameraRoll
 {
 
@@ -213,7 +226,7 @@
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CGFloat cellHeight = [[NSString circulateLabelHeight:[[feedList objectAtIndex:indexPath.row] objectForKey:@"description"] labelWidth:SCREEN_BOUNDS.size.width-20 labelFont:[UIFont fontWithName:defaultFont size:14]] floatValue];
+    CGFloat cellHeight = [[NSString circulateLabelHeight:[[feedList objectAtIndex:indexPath.row] objectForKey:@"description"] labelWidth:SCREEN_BOUNDS.size.width-20 labelFont:[UIFont fontWithName:defaultFont size:15]] floatValue];
     
     if(cellHeight > 0){
         return 5+35+5+cellHeight+5+SCREEN_BOUNDS.size.width + 5+30+5+1+5+40+5+4;
@@ -227,7 +240,9 @@
 - (void)openMessagePage:(NSInteger)index
 {
     if([feedList count] > 0){
+        didSelectCell = [NSNumber numberWithInteger:index];
         PMMessageVC *messageVC = [[PMMessageVC alloc] initWithFeed:[[feedList objectAtIndex:index] objectForKey:@"id"]];
+        messageVC.messageDelegate = self;
         [self.navigationController pushViewController:messageVC animated:YES];
 
     }
