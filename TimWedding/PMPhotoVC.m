@@ -54,9 +54,9 @@
     static NSString *cellIdentifier = @"CustomCell";
     PMPhotoCell *cell = (PMPhotoCell *)[collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
     
-    cell.backgroundColor   = [UIColor darkGrayColor];
+    cell.backgroundColor   = [UIColor blackColor];
     NSString *picUrlString = [NSString stringWithFormat:@"%@",[[photoList objectAtIndex:indexPath.row] valueForKey:@"url"]];
-
+    
     cell.imageView.tag     = indexPath.row;
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapImage:)];
     [cell.imageView addGestureRecognizer:tapGesture];

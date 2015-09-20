@@ -30,6 +30,10 @@
 {
     self = [super initWithFrame:aRect];
     {
+        UILabel *background = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width-1, self.frame.size.height-1)];
+        background.backgroundColor = [UIColor darkGrayColor];
+        [self addSubview:background];
+        
         //we create the UIImageView in this overwritten init so that we always have it at hand.
         imageView                        = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_BOUNDS.size.width/2, SCREEN_BOUNDS.size.width/2)];
         imageView.contentMode            = UIViewContentModeScaleAspectFill;
