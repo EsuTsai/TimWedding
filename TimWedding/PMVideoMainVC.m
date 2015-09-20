@@ -11,8 +11,9 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import <MediaPlayer/MPVolumeView.h>
 #import <pop/POP.h>
+#import "IDMPhotoBrowser.h"
 
-@interface PMVideoMainVC ()
+@interface PMVideoMainVC () <IDMPhotoBrowserDelegate>
 {
     UIScrollView *backgroundView;
 }
@@ -160,6 +161,10 @@
     [circleView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%d.jpg",count]]];
     circleView.contentMode        = UIViewContentModeScaleAspectFill;
     circleView.clipsToBounds      = YES;
+    circleView.tag = count;
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapImage:)];
+    [circleView addGestureRecognizer:tapGesture];
+    circleView.userInteractionEnabled = YES;
 //    circleView.alpha = 0.5;
     circleView.layer.cornerRadius = 30;
     circleView.backgroundColor    = [UIColor colorWithRed:0.945 green:0.510 blue:0.000 alpha:1.000];
@@ -221,5 +226,27 @@
     
     return infoView;
 }
+
+- (void)didTapImage:(UITapGestureRecognizer *)tapGesture
+{
+    UIImageView *imageView = (UIImageView *)tapGesture.view;
+    IDMPhoto *photo;
+    NSMutableArray *photos = [NSMutableArray new];
+    photo = [IDMPhoto photoWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"%ld.jpg",(long)tapGesture.view.tag]]];
+    [photos addObject:photo];
+    
+    IDMPhotoBrowser *browser;
+    browser = [[IDMPhotoBrowser alloc] initWithPhotos:photos animatedFromView:tapGesture.view];
+    browser.scaleImage = imageView.image;
+    browser.delegate = self;
+    browser.displayCounterLabel = NO;
+    browser.displayActionButton = NO;
+    browser.displayArrowButton = NO;
+    browser.usePopAnimation = YES;
+    
+    [self presentViewController:browser animated:NO completion:nil];
+    
+}
+
 
 @end
