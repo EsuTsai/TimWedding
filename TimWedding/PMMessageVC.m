@@ -46,6 +46,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.title = @"留言";
     self.view.backgroundColor = [UIColor whiteColor];
     isSending = NO;
     messageList = [[NSMutableArray alloc] init];
@@ -64,14 +65,15 @@
     messageLabel                        = [[UILabel alloc] initWithFrame:CGRectMake(0, SCREEN_BOUNDS.size.height - 64 - 49 - 40 - 16 -1 - 30 -8 , SCREEN_BOUNDS.size.width, 200)];
     [messageLabel layoutIfNeeded];
     messageLabel.userInteractionEnabled = YES;
+    messageLabel.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:messageLabel];
     
-    UIVisualEffect *blurEffect;
-    blurEffect             = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
-    UIVisualEffectView *visualEffectView;
-    visualEffectView       = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
-    visualEffectView.frame = messageLabel.bounds;
-    [messageLabel addSubview:visualEffectView];
+//    UIVisualEffect *blurEffect;
+//    blurEffect             = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+//    UIVisualEffectView *visualEffectView;
+//    visualEffectView       = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+//    visualEffectView.frame = messageLabel.bounds;
+//    [messageLabel addSubview:visualEffectView];
     
     UILabel *line        = [[UILabel alloc] initWithFrame:CGRectMake(10, 1, SCREEN_BOUNDS.size.width-20, 1)];
     line.backgroundColor = [UIColor colorWithWhite:0.798 alpha:1.000];
