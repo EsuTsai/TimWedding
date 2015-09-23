@@ -13,6 +13,7 @@
 - (void)openMessagePage:(NSInteger)index;
 - (void)updateLikeData:(NSMutableArray *)likeList index:(NSInteger)index status:(NSInteger)status;
 - (void)openImageWithTag:(NSInteger)tag view:(UIImageView *)sender;
+- (void)deletePost:(NSInteger)tag;
 
 @end
 

@@ -7,6 +7,9 @@
 //
 
 #import "PMMapVC.h"
+#import <FontAwesomeKit/FontAwesomeKit.h>
+#import "PMLabelCopy.h"
+
 @import GoogleMaps;
 
 static CLLocationManager *locationManager;
@@ -41,7 +44,7 @@ static CLLocationManager *locationManager;
     }
         
     self.view.backgroundColor = [UIColor blackColor];
-    bgImg           = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_BOUNDS.size.width,300)];
+    bgImg           = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_BOUNDS.size.width,260)];
     bgImg.contentMode            = UIViewContentModeScaleAspectFill;
     bgImg.clipsToBounds          = YES;
     bgImg.userInteractionEnabled = YES;
@@ -54,13 +57,13 @@ static CLLocationManager *locationManager;
     [bgImg addSubview:layer];
     
     
-    UILabel *busTitle = [[UILabel alloc] initWithFrame:CGRectMake(20, 30, SCREEN_BOUNDS.size.width-40, 20)];
+    UILabel *busTitle = [[UILabel alloc] initWithFrame:CGRectMake(20, 46, SCREEN_BOUNDS.size.width-40, 20)];
     busTitle.font = [UIFont fontWithName:defaultFont size:18];
     busTitle.text = @"大眾運輸";
     busTitle.textColor = [UIColor colorWithRed:233.0/255.0 green:215.0/255.0 blue:154.0/255.0 alpha:1.000];
     [bgImg addSubview:busTitle];
     
-    UILabel *busInfo = [[UILabel alloc] initWithFrame:CGRectMake(20, busTitle.frame.origin.y + busTitle.frame.size.height + 2, SCREEN_BOUNDS.size.width-40, 40)];
+    PMLabelCopy *busInfo = [[PMLabelCopy alloc] initWithFrame:CGRectMake(20, busTitle.frame.origin.y + busTitle.frame.size.height + 2, SCREEN_BOUNDS.size.width-40, 40)];
     busInfo.font = [UIFont fontWithName:defaultFont size:13];
     busInfo.text = @"公車 - 環球購物中心、板橋監理站\n可搭乘藍31 57 307 796 1032";
     busInfo.numberOfLines = 0;
@@ -77,9 +80,9 @@ static CLLocationManager *locationManager;
     sutterBusTitle.textColor = [UIColor colorWithRed:233.0/255.0 green:215.0/255.0 blue:154.0/255.0 alpha:1.000];
     [bgImg addSubview:sutterBusTitle];
     
-    UILabel *sutterBusInfo = [[UILabel alloc] initWithFrame:CGRectMake(20, sutterBusTitle.frame.origin.y + sutterBusTitle.frame.size.height + 2, SCREEN_BOUNDS.size.width-40, 160)];
+    PMLabelCopy *sutterBusInfo = [[PMLabelCopy alloc] initWithFrame:CGRectMake(20, sutterBusTitle.frame.origin.y + sutterBusTitle.frame.size.height + 2, SCREEN_BOUNDS.size.width-40, 110)];
     sutterBusInfo.font = [UIFont fontWithName:defaultFont size:13];
-    sutterBusInfo.text = @"1. 景安線 / 平均班距30-45分\n環球購物中心 - 中和稅捐站 - (美麗時代站) - 中和市公所站 - 捷運景安站 - (遠東世紀站)\n2. 新埔線 / 平均班距15-20分\n環球購物中心 - 正隆廣場站 - 捷運新埔站3號出口 - 捷運新埔站1號出口\n3. 板橋線 / 平均班距15-20分\n環球購物中心 - 板橋火車站西出口站 - 環球購物中心";
+    sutterBusInfo.text = @"1. 新埔線 / 平均班距15-20分\n環球購物中心 - 正隆廣場站 - 捷運新埔站3號出口 - 捷運新埔站1號出口\n2. 板橋線 / 平均班距15-20分\n環球購物中心 - 板橋火車站西出口站 - 環球購物中心";
     sutterBusInfo.numberOfLines = 0;
     sutterBusInfo.textColor = [UIColor whiteColor];
     sutterBusInfo.layer.shadowColor = [UIColor blackColor].CGColor;
@@ -110,7 +113,7 @@ static CLLocationManager *locationManager;
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:25.0065836
                                                             longitude:121.4748252
                                                                  zoom:17];
-    mapView_ = [GMSMapView mapWithFrame:CGRectMake(0, 300, SCREEN_BOUNDS.size.width, SCREEN_BOUNDS.size.height - 49 -300) camera:camera];
+    mapView_ = [GMSMapView mapWithFrame:CGRectMake(0, 260, SCREEN_BOUNDS.size.width, SCREEN_BOUNDS.size.height - 49 -260) camera:camera];
     mapView_.myLocationEnabled = YES;
     mapView_.buildingsEnabled = NO;
     mapView_.delegate = self;
@@ -122,6 +125,10 @@ static CLLocationManager *locationManager;
     marker.title = @"華漾環球 4F 福漾廳";
     marker.snippet = @"104年 11月 1日 (日) 18:00 晚宴";
     marker.map = mapView_;
+    FAKIonIcons *mapIcon = [FAKIonIcons wineglassIconWithSize:44];
+    [mapIcon addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:1.000 green:0.322 blue:0.325 alpha:1.000]];
+    UIImage *mapImage = [mapIcon imageWithSize:CGSizeMake(44, 44)];
+    marker.icon = mapImage;
     
     [mapView_ setSelectedMarker:marker];
     
@@ -135,7 +142,7 @@ static CLLocationManager *locationManager;
 - (void)mapView:(GMSMapView *)mapView willMove:(BOOL)gesture
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-    if(mapView.frame.origin.y >= 300){
+    if(mapView.frame.origin.y >= 260){
         [UIView animateWithDuration:.45 animations:^{
             mapView.frame = CGRectMake(0, 100, SCREEN_BOUNDS.size.width, SCREEN_BOUNDS.size.height-49-100);
             mapInfoBtn.alpha = 0.5;
@@ -152,7 +159,7 @@ static CLLocationManager *locationManager;
 - (void)openTrafficWay:(UIButton *)sender
 {
     [UIView animateWithDuration:.45 animations:^{
-        mapView_.frame = CGRectMake(0, 300, SCREEN_BOUNDS.size.width, SCREEN_BOUNDS.size.height-49-300);
+        mapView_.frame = CGRectMake(0, 260, SCREEN_BOUNDS.size.width, SCREEN_BOUNDS.size.height-49-260);
         mapInfoBtn.alpha = 0.0;
         trafficBtn.alpha = 0.0;
         bgImg.transform = CGAffineTransformMakeScale(1.0,1.0);

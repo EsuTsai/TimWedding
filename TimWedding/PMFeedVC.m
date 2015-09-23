@@ -118,6 +118,7 @@
                                             @"commentList":object[@"commentList"],
                                             @"messagecount":object[@"messagecount"],
                                             @"likecount":object[@"likecount"],
+                                            @"usertoken":object[@"usertoken"],
                                             @"createdat":object.createdAt
                                             };
                 [feedList addObject:objectDic];
@@ -167,6 +168,25 @@
         [feedTableView reloadData];
     }
 
+}
+
+- (void)deletePost:(NSInteger)tag
+{
+    bottomImg.hidden = NO;
+    bottomImg.alpha = 1.0;
+    [activityIndicatorView startAnimating];
+    PFQuery *query = [PFQuery queryWithClassName:@"PostObject"];
+    [query getObjectInBackgroundWithId:[[feedList objectAtIndex:tag] objectForKey:@"id"]
+                                 block:^(PFObject *postObject, NSError *error) {
+                                     if(!error){
+                                         [postObject deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                                             if (succeeded && !error) {
+                                                 [self getLatestData];
+                                             }
+                                         }];
+                                     }
+                                     
+                                 }];
 }
 
 - (void)openCameraRoll

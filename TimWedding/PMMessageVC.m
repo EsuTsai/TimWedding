@@ -51,7 +51,7 @@
     isSending = NO;
     messageList = [[NSMutableArray alloc] init];
     
-    messageTableView                = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_BOUNDS.size.width, SCREEN_BOUNDS.size.height - 64 - 49 - 30 - 16 -1 - 30 -8)];
+    messageTableView                = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_BOUNDS.size.width, SCREEN_BOUNDS.size.height - 64 - 49 - 30 - 16 -1 - 30 -8-10)];
     messageTableView.delegate       = self;
     messageTableView.dataSource     = self;
     messageTableView.separatorStyle = UITableViewCellSeparatorStyleNone;

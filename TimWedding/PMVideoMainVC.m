@@ -62,11 +62,15 @@
     //    visualEffectView.frame = self.player.view.bounds;
     //    [self.player.view addSubview:visualEffectView];
     
-    UILabel *titleLabel      = [[UILabel alloc] initWithFrame:CGRectMake(0, 50, SCREEN_BOUNDS.size.width, 40)];
-    titleLabel.text          = @"POM & MIKI";
-    titleLabel.textAlignment = NSTextAlignmentCenter;
-    titleLabel.font          = [UIFont fontWithName:defaultFont size:40.];
-    titleLabel.textColor     = [UIColor whiteColor];
+    UIImageView *titleLabel      = [[UIImageView alloc] initWithFrame:CGRectMake(0, 30, SCREEN_BOUNDS.size.width, 80)];
+    [titleLabel setImage:[UIImage imageNamed:@"logo.png"]];
+    titleLabel.contentMode            = UIViewContentModeScaleAspectFit;
+    titleLabel.clipsToBounds          = YES;
+
+//    titleLabel.text          = @"POM & MIKI";
+//    titleLabel.textAlignment = NSTextAlignmentCenter;
+//    titleLabel.font          = [UIFont fontWithName:defaultFont size:40.];
+//    titleLabel.textColor     = [UIColor whiteColor];
     [backgroundView addSubview:titleLabel];
     
     [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(startTimeline) userInfo:nil repeats:NO];
@@ -191,7 +195,7 @@
                            @"周家全家福",
                            @"賴家全家福",
                            @"2006.1.1 紀念日",
-                           @"2015.11.1 Wedding",
+                           @"2014.3.22 求婚",
                            @"2015.11.1 Wedding"];
     
     NSArray *wordArray = @[@"周先生．鄧小姐 - 締結良緣\n揭開了周公館家歡樂生活的布幕",

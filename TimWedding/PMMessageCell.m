@@ -9,6 +9,7 @@
 #import "PMMessageCell.h"
 #import "NSString+Height.h"
 #import <NSDate+TimeAgo.h>
+#import "PMLabelCopy.h"
 
 @implementation PMMessageCell
 
@@ -51,7 +52,7 @@
     NSString *localDateString = [date timeAgo];
     timeLabel.text          = localDateString;
     
-    UILabel *description = [[UILabel alloc] initWithFrame:CGRectMake(10, userName.frame.origin.y+userName.frame.size.height+5, SCREEN_BOUNDS.size.width-20, 0)];
+    PMLabelCopy *description = [[PMLabelCopy alloc] initWithFrame:CGRectMake(10, userName.frame.origin.y+userName.frame.size.height+5, SCREEN_BOUNDS.size.width-20, 0)];
     description.numberOfLines = 0;
     description.text = [data objectForKey:@"description"];
     description.font = [UIFont fontWithName:defaultFont size:15];

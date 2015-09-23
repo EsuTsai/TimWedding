@@ -13,8 +13,9 @@
 #import "PMUtility.h"
 #import <NSDate+TimeAgo.h>
 #import "NSString+Height.h"
+#import "PMLabelCopy.h"
 
-@interface PMFeedCell ()
+@interface PMFeedCell () <UIAlertViewDelegate>
 {
     NSDictionary *dataDic;
     UIButton *likeBtn;
@@ -65,7 +66,7 @@
     NSString *localDateString = [date timeAgo];
     timeLabel.text            = localDateString;
     
-    UILabel *description = [[UILabel alloc] initWithFrame:CGRectMake(10, nickName.frame.origin.y + nickName.frame.size.height, SCREEN_BOUNDS.size.width-20, 0)];
+    PMLabelCopy *description = [[PMLabelCopy alloc] initWithFrame:CGRectMake(10, nickName.frame.origin.y + nickName.frame.size.height, SCREEN_BOUNDS.size.width-20, 0)];
     description.text = [data objectForKey:@"description"];
     description.numberOfLines = 0;
     description.font = [UIFont fontWithName:defaultFont size:14.];
@@ -102,6 +103,19 @@
     infoLabel.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     [infoLabel addTarget:self action:@selector(messagePress:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:infoLabel];
+    
+    if([[data objectForKey:@"usertoken"] isEqualToString:[[PMUtility sharedInstance] userToken]]){
+        UIButton *deleteBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_BOUNDS.size.width - 10 - 40, infoLabel.frame.origin.y, 40, infoLabel.frame.size.height)];
+        deleteBtn.tag = index;
+        FAKIonIcons *deleteIcon = [FAKIonIcons ios7TrashOutlineIconWithSize:22];
+        [deleteIcon addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:78.0/255.0 green:139.0/255.0 blue:115.0/255.0 alpha:1.000]];
+        UIImage *deleteImage    = [deleteIcon imageWithSize:CGSizeMake(22, 22)];
+        [deleteBtn setImage:deleteImage forState:UIControlStateNormal];
+        [deleteBtn addTarget:self action:@selector(alertWithDelete:) forControlEvents:UIControlEventTouchUpInside];
+        [self.contentView addSubview:deleteBtn];
+
+    }
+    
     
     UILabel *line        = [[UILabel alloc] initWithFrame:CGRectMake(10, infoLabel.frame.origin.y +infoLabel.frame.size.height+5, SCREEN_BOUNDS.size.width-20, 1)];
     line.backgroundColor = [UIColor colorWithWhite:0.849 alpha:1.000];
@@ -147,6 +161,33 @@
     line2.backgroundColor = [UIColor colorWithWhite:0.849 alpha:1.000];
     [self.contentView addSubview:line2];
     
+}
+
+- (void)alertWithDelete:(UIButton *)sender
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
+                                                    message:@"是否確定刪除？"
+                                                   delegate:self
+                                          cancelButtonTitle:@"取消"
+                                          otherButtonTitles:@"刪除", nil];
+    alert.tag = sender.tag;
+    [alert show];
+}
+
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if(buttonIndex == 1){
+        if(_cellDelegate && [_cellDelegate respondsToSelector:@selector(deletePost:)]){
+            [_cellDelegate deletePost:alertView.tag];
+        }
+    }
+}
+
+- (void)deletePress:(UIButton *)sender
+{
+    if(_cellDelegate && [_cellDelegate respondsToSelector:@selector(deletePost:)]){
+        [_cellDelegate deletePost:sender.tag];
+    }
 }
 
 - (void)likePress:(UIButton *)sender

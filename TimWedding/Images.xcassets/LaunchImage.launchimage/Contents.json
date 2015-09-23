@@ -23,7 +23,7 @@
       "idiom" : "iphone",
       "extent" : "full-screen",
       "minimum-system-version" : "7.0",
-      "filename" : "iphone_portrait_5_@2x.png",
+      "filename" : "iphone_portrait_4_@2x-2.png",
       "scale" : "2x"
     },
     {
@@ -53,7 +53,7 @@
       "orientation" : "portrait",
       "idiom" : "iphone",
       "extent" : "full-screen",
-      "filename" : "iphone_portrait_4_@2x-1.png",
+      "filename" : "iphone_portrait_5_@2x.png",
       "subtype" : "retina4",
       "scale" : "2x"
     }
