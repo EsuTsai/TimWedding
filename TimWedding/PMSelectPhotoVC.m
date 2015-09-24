@@ -149,7 +149,7 @@
     if ([feedInfo.text isEqualToString:@"  說點什麼吧..."]) {
         feedInfo.text = @"";
     }
-    NSData *imageData   = UIImageJPEGRepresentation(selectPhoto, 0.2);
+    NSData *imageData   = UIImageJPEGRepresentation(selectPhoto, 0.3);
     NSString *imageType = [self contentTypeForImageData:imageData];
    NSLog(@"File size is : %.2f MB",(float)imageData.length/1024.0f/1024.0f);
     

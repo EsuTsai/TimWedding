@@ -83,7 +83,7 @@
     [self.view addSubview:activityIndicatorView];
     [activityIndicatorView startAnimating];
     
-    [self getData];
+    [self getData:NO];
     
     
 }
@@ -99,7 +99,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)getData
+- (void)getData:(BOOL)scroll
 {
     PFQuery *query = [PFQuery queryWithClassName:@"PostObject"];
     [query orderByDescending:@"createdAt"];
@@ -125,6 +125,11 @@
             }
             
             [feedTableView reloadData];
+            if(scroll){
+                [UIView animateWithDuration:.25 animations:^{
+                    feedTableView.contentOffset = CGPointMake(0, 0);
+                }];
+            }
         } else {
             // Log details of the failure
             NSLog(@"Error: %@ %@", error, [error userInfo]);
@@ -148,14 +153,16 @@
 - (void)getLatestData
 {
     feedList = [[NSMutableArray alloc] init];
-    [self getData];
+    [self getData:NO];
 }
 
 - (void)refreshData
 {
+//    [refreshControl beginRefreshing];
     [activityIndicatorView startAnimating];
     feedList = [[NSMutableArray alloc] init];
-    [self getData];
+    [self getData:YES];
+    
 }
 
 - (void)refreshMessageCount:(NSInteger)count
@@ -238,16 +245,19 @@
         
     }
     cell.cellDelegate = self;
-    [cell setContent:[feedList objectAtIndex:indexPath.row] index:indexPath.row];
-    
+    if(indexPath.row != [feedList count] && [feedList count] > 0){
+        [cell setContent:[feedList objectAtIndex:indexPath.row] index:indexPath.row];
+    }
     return cell;
 }
 
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CGFloat cellHeight = [[NSString circulateLabelHeight:[[feedList objectAtIndex:indexPath.row] objectForKey:@"description"] labelWidth:SCREEN_BOUNDS.size.width-20 labelFont:[UIFont fontWithName:defaultFont size:15]] floatValue];
-    
+    CGFloat cellHeight = 0;
+    if(indexPath.row != [feedList count] && [feedList count] > 0){
+        cellHeight = [[NSString circulateLabelHeight:[[feedList objectAtIndex:indexPath.row] objectForKey:@"description"] labelWidth:SCREEN_BOUNDS.size.width-20 labelFont:[UIFont fontWithName:defaultFont size:15]] floatValue];
+    }
     if(cellHeight > 0){
         return 5+35+5+cellHeight+5+SCREEN_BOUNDS.size.width + 5+30+5+1+5+40+5+4;
 
