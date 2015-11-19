@@ -752,6 +752,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/TimWedding/TimWedding.pch";
 				INFOPLIST_FILE = TimWedding/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -769,6 +770,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/TimWedding/TimWedding.pch";
 				INFOPLIST_FILE = TimWedding/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;

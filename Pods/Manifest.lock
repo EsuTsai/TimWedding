@@ -20,7 +20,7 @@ PODS:
   - AFNetworking/UIKit (2.5.3):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - Bolts/Tasks (1.2.2)
+  - Bolts/Tasks (1.3.0)
   - DACircularProgress (2.2.0)
   - DGActivityIndicatorView (1.0)
   - FontAwesomeKit (2.1.8):
@@ -43,9 +43,9 @@ PODS:
   - Parse (1.8.3):
     - Bolts/Tasks (>= 1.2.2)
   - pop (1.0.7)
-  - SDWebImage (3.7.1):
+  - SDWebImage (3.7.3):
     - SDWebImage/Core
-  - SDWebImage/Core (3.7.1)
+  - SDWebImage/Core (3.7.3)
 
 DEPENDENCIES:
   - AFNetworking (= 2.5.3)
@@ -56,11 +56,11 @@ DEPENDENCIES:
   - NSDate+TimeAgo
   - Parse
   - pop (= 1.0.7)
-  - SDWebImage (= 3.7.1)
+  - SDWebImage (= 3.7.3)
 
 SPEC CHECKSUMS:
   AFNetworking: e1d86c2a96bb5d2e7408da36149806706ee122fe
-  Bolts: 20a2bd788273360cb1e31530dc19b8544eef2544
+  Bolts: 805a4a87413e49d4a0c2b7d469084cbc46b09342
   DACircularProgress: 0f92b77239d5f3c612fc66185e2998391ac8e054
   DGActivityIndicatorView: 980091f8d8cc647a1af7804660272e64aef9e516
   FontAwesomeKit: 64759fb28b5d2e74a1bd81553d7c11ca10e32179
@@ -68,6 +68,6 @@ SPEC CHECKSUMS:
   NSDate+TimeAgo: 416f55d2696d3744c313091c5a9280d47f8238fe
   Parse: 4b251ac63b76d12b334a32579cc3b174446f0c39
   pop: 628ffc631644601567ee8bfaaaea493ebd7d0923
-  SDWebImage: ed3095af2ff88b436426037444979b917f6c5575
+  SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
 
 COCOAPODS: 0.33.1
