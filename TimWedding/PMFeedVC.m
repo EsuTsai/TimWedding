@@ -63,7 +63,7 @@
     UIImage *cameraImage    = [cameraIcon imageWithSize:CGSizeMake(34, 34)];
     [photoBtn setImage:cameraImage forState:UIControlStateNormal];
     [self.view addSubview:photoBtn];
-//
+
     bottomImg               = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_BOUNDS.size.width, SCREEN_BOUNDS.size.height-64-49)];
     [bottomImg setImage:[UIImage imageNamed:@"jc-4501.jpg"]];
     bottomImg.contentMode   = UIViewContentModeScaleAspectFill;
